@@ -82,6 +82,7 @@ export class PhotoService {
       return {
         filepath: savedFile.uri,
         webviewPath: Capacitor.convertFileSrc(savedFile.uri),
+        path: savedFile.uri
       };
     }
 
