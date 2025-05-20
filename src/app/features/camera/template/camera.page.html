@@ -1,25 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="danger">
     <ion-title>
-      Tomar Foto
+      <ion-icon name="camera-outline"></ion-icon>
+      Fotos de Evidencia
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="camera-content" [fullscreen]="true">
+  <div class="photo-container">
+    <div class="empty-state" *ngIf="photoService.photos.length === 0">
+      <ion-icon name="images-outline"></ion-icon>
+      <p>No hay fotos todavía</p>
+      <span>Las fotos que tomes aparecerán aquí</span>
+    </div>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-        <ion-img [src]="photo.webviewPath" (click)="showActionSheet(photo, position)"></ion-img>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid *ngIf="photoService.photos.length > 0">
+      <ion-row>
+        <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+          <div class="photo-card" (click)="showActionSheet(photo, position)">
+            <ion-img [src]="photo.webviewPath" class="photo-img"></ion-img>
+            <div class="photo-overlay">
+              <ion-icon name="expand-outline"></ion-icon>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addPhotoToGallery()">
-      <ion-icon name="camera"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
+  <div class="camera-footer">
+    <ion-button expand="block" class="capture-button" (click)="addPhotoToGallery()">
+      <ion-icon name="camera" slot="start"></ion-icon>
+      Tomar Foto
+    </ion-button>
+  </div>
 </ion-content>
