@@ -9,7 +9,7 @@ import { UserPhoto } from '../models/UserPhoto.Model';
 })
 
 export class ShareService {
-  public async sharePhoto(photo: UserPhoto): Promise<void> {
+  public async sharePhoto(photo: UserPhoto, testMessage?: string): Promise<void> {
     try {
       if (!Capacitor.isNativePlatform()) {
         await Share.share({
@@ -37,10 +37,11 @@ export class ShareService {
 
       await Share.share({
         title: 'Foto de evidencia',
-        text: 'Estoy en peligro, mira esta foto.',
+        text: testMessage ? testMessage : 'Estoy en peligro, mira esta foto.',
         files: [uriResult.uri],
         dialogTitle: 'Compartir foto en...'
       });
+
     } catch (error) {
       console.error('Error al compartir la foto', error);
     }

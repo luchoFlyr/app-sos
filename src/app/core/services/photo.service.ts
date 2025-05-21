@@ -3,7 +3,7 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 import { UserPhoto } from '../models/UserPhoto.Model';
-import { Platform } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 import { Capacitor } from '@capacitor/core';
 import { PlatformsEnum } from '../enums/platforms.enum';
 
@@ -15,7 +15,10 @@ export class PhotoService {
   private PHOTO_STORAGE: string = 'photos';
   private platform: Platform;
 
-  constructor(platform: Platform) {
+  constructor(
+    platform: Platform,
+    private loadingCtrl: LoadingController,
+  ) {
     this.platform = platform;
   }
 
@@ -69,6 +72,14 @@ export class PhotoService {
   }
 
   private async savePicture(photo: Photo) {
+    const loading = await this.loadingCtrl.create({
+      message: '¡Guardando tu evidencia! No tardamos',
+      spinner: 'crescent',
+      backdropDismiss: false
+    });
+
+    await loading.present();
+
     const base64Data = await this.readAsBase64(photo);
 
     const fileName = Date.now() + '.jpeg';
@@ -79,12 +90,15 @@ export class PhotoService {
     });
 
     if (this.platform.is(PlatformsEnum.HYBRID)) {
+      await loading.dismiss();
+
       return {
         filepath: savedFile.uri,
         webviewPath: Capacitor.convertFileSrc(savedFile.uri),
         path: savedFile.uri
       };
     }
+    await loading.dismiss();
 
     return {
       filepath: fileName,

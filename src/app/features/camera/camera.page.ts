@@ -4,6 +4,8 @@ import { PhotoService } from '../../core/services/photo.service';
 import { UserPhoto } from 'src/app/core/models/UserPhoto.Model';
 import { ShareService } from 'src/app/core/services/share.service';
 import { LoadingController } from '@ionic/angular';
+import { LocationService } from 'src/app/core/services/location.service';
+import { GeocodingService } from 'src/app/core/services/geocoding.service';
 
 @Component({
   selector: 'app-camera',
@@ -17,7 +19,9 @@ export class CameraPage implements OnInit {
     public photoService: PhotoService,
     private actionSheetController: ActionSheetController,
     private loadingCtrl: LoadingController,
-    private shareService: ShareService
+    private shareService: ShareService,
+    private locationService: LocationService,
+    private geocodingService: GeocodingService,
   ) { }
 
   async ngOnInit() {
@@ -62,10 +66,39 @@ export class CameraPage implements OnInit {
 
     try {
       await loading.present();
-      await this.shareService.sharePhoto(photo);
+
+      const { latitude, longitude } = await this.locationService.getCurrentLocation();
+
+      const { components } = await this.geocodingService.reverseGeocode(latitude, longitude);
+      const { streetNumber, route, locality, administrativeArea, postalCode, country } = components;
+
+      const addressLines = [
+        `${route ?? ''}${streetNumber ? ' #' + streetNumber : ''}`.trim(),
+        `${locality ?? ''}${administrativeArea ? ', ' + administrativeArea : ''} ${postalCode ?? ''}`.trim(),
+        `${country ?? ''}`
+      ].filter(l => l.length);
+
+      const addressText = addressLines.join('\n');
+      // const mapsLink = this.locationService.getSearchLink(latitude, longitude);
+      const mapsLink = this.locationService.getStreetViewLink(latitude, longitude);
+
+      const textMessage =
+        `${addressText}\n\n` +
+        `Latitud: ${latitude}\n` +
+        `Longitud: ${longitude}\n\n` +
+        `${mapsLink}`;
+
+      await this.shareService.sharePhoto(photo, textMessage);
+
     } finally {
       await loading.dismiss();
     }
+
   }
 
+  private async shareLocation() {
+    const coords = await this.locationService.getCurrentLocation();
+    const link = this.locationService.getStreetViewLink(coords.latitude, coords.longitude);
+    return link;
+  }
 }
