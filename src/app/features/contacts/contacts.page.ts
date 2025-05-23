@@ -3,15 +3,7 @@ import { AlertController, ActionSheetController, Platform } from '@ionic/angular
 import { Contact } from "../../core/models/Contact.Model";
 import { PlatformsEnum } from '../../core/enums/platforms.enum';
 import { ContactPicker } from '@calvinckho/capacitor-contact-picker';
-import type { Contact as CapacitorContact } from '@calvinckho/capacitor-contact-picker';
-
-interface ExtendedContact extends CapacitorContact {
-  displayName?: string;
-  givenName?: string;
-  familyName?: string;
-  phoneNumbers?: { phoneNumber: string }[];
-}
-
+import { ExtendedContact } from 'src/app/core/models/ExtendedContact';
 
 @Component({
   selector: 'app-contacts',
@@ -92,13 +84,13 @@ export class ContactsPage implements OnInit {
         throw new Error('ContactPicker plugin no disponible.');
       }
 
-      const result = await ContactPicker.open();
+      const contact = await ContactPicker.open();
 
-      if (result?.length) {
-        const contact = result[0] as ExtendedContact;
+      if (contact) {
+        const extendedContact = contact as ExtendedContact;
 
-        const name = contact.displayName || `${contact.givenName ?? ''} ${contact.familyName ?? ''}`.trim();
-        const phone = contact.phoneNumbers?.[0]?.phoneNumber ?? '';
+        const name = extendedContact.displayName || extendedContact.fullName;
+        const phone = extendedContact.phoneNumbers?.[0]?.phoneNumber ?? '';
 
         if (name && phone) {
           this.contacts.push({
