@@ -1,20 +1,24 @@
 <ion-tabs>
-
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="panic" href="/menu/panic">
-      <ion-icon aria-hidden="true" name="triangle"></ion-icon>
-      <ion-label>¡Pánico!</ion-label>
+  <ion-tab-bar slot="bottom" class="custom-tabs">
+    <ion-tab-button tab="panic" href="/menu/panic" class="panic-tab">
+      <div class="tab-button-inner">
+        <ion-icon aria-hidden="true" name="alert-circle"></ion-icon>
+        <ion-label>Pánico</ion-label>
+      </div>
     </ion-tab-button>
 
-    <ion-tab-button tab="camera" href="/menu/camera">
-      <ion-icon aria-hidden="true" name="ellipse"></ion-icon>
-      <ion-label>¡Evidencias!</ion-label>
+    <ion-tab-button tab="camera" href="/menu/camera" class="evidence-tab">
+      <div class="tab-button-inner">
+        <ion-icon aria-hidden="true" name="camera"></ion-icon>
+        <ion-label>Evidencias</ion-label>
+      </div>
     </ion-tab-button>
 
-    <ion-tab-button tab="contacts" href="/menu/contacts">
-      <ion-icon aria-hidden="true" name="square"></ion-icon>
-      <ion-label>¡Contactos!</ion-label>
+    <ion-tab-button tab="contacts" href="/menu/contacts" class="contacts-tab">
+      <div class="tab-button-inner">
+        <ion-icon aria-hidden="true" name="people"></ion-icon>
+        <ion-label>Contactos</ion-label>
+      </div>
     </ion-tab-button>
   </ion-tab-bar>
-
 </ion-tabs>

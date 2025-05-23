@@ -1,17 +1,67 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="danger">
     <ion-title>
-      Contactos
+      <ion-icon name="people-outline"></ion-icon>
+      Contactos de Emergencia
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Contactos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="contacts-content" [fullscreen]="true">
+  <div class="contacts-container">
+    <div class="action-buttons">
+      <ion-button expand="block" class="add-contact-btn" (click)="addEmergencyContact()">
+        <ion-icon name="person-add" slot="start"></ion-icon>
+        Añadir Contacto de Emergencia
+      </ion-button>
 
-  <app-explore-container name="Contacts page"></app-explore-container>
+      <ion-button expand="block" fill="outline" class="import-contacts-btn" (click)="importContacts()">
+        <ion-icon name="download" slot="start"></ion-icon>
+        Importar Contactos
+      </ion-button>
+    </div>
+
+    <div class="contacts-list-container">
+      <div class="contacts-header">
+        <h3>Contactos de Emergencia</h3>
+        <span class="contacts-count">{{contacts.length}} contacto(s)</span>
+      </div>
+
+      <div class="empty-state" *ngIf="contacts.length === 0">
+        <ion-icon name="people-outline"></ion-icon>
+        <p>No hay contactos de emergencia</p>
+        <span>Añade contactos para emergencias</span>
+      </div>
+
+      <!-- Contacts List -->
+      <div class="contacts-list" *ngIf="contacts.length > 0">
+        <div class="contact-card" *ngFor="let contact of contacts; let i = index">
+          <div class="contact-info">
+            <div class="contact-avatar">
+              <ion-icon name="person"></ion-icon>
+            </div>
+            <div class="contact-details">
+              <h4>{{contact.name}}</h4>
+              <p>{{contact.phone}}</p>
+              <span class="contact-type">{{contact.type || 'Emergencia'}}</span>
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <ion-button fill="clear" size="small" class="call-btn" (click)="callContact(contact)">
+              <ion-icon name="call"></ion-icon>
+            </ion-button>
+
+            <ion-button fill="clear" size="small" class="edit-btn" (click)="editContact(contact, i)">
+              <ion-icon name="create"></ion-icon>
+            </ion-button>
+
+            <ion-button fill="clear" size="small" class="delete-btn" (click)="deleteContact(i)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

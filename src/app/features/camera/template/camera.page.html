@@ -11,8 +11,8 @@
   <div class="photo-container">
     <div class="empty-state" *ngIf="photoService.photos.length === 0">
       <ion-icon name="images-outline"></ion-icon>
-      <p>No hay fotos todavía</p>
-      <span>Las fotos que tomes aparecerán aquí</span>
+      <p>¡Aún no tienes evidencias tomadas!</p>
+      <span>Cuándo tengas evidencias relacionadas, aquí te las mostraremos</span>
     </div>
 
     <ion-grid *ngIf="photoService.photos.length > 0">
