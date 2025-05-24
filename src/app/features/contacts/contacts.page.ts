@@ -15,8 +15,8 @@ export class ContactsPage implements OnInit {
 
   contacts: Contact[] = [
     {
-      name: 'Alejandra Restrepo',
-      phone: '3145744567',
+      name: 'Luis Villalba',
+      phone: '3155669183',
       type: 'Emergencia'
     }
   ];
