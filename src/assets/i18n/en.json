@@ -1,0 +1,21 @@
+{
+  "camera": {
+    "title": "Take Evidencies",
+    "emptyTitle": "You haven't taken any evidence yet!",
+    "emptySubtitle": "When you have related evidence, we'll show them here",
+    "shareText": "Share Evidence",
+    "deleteText": "Delete Evidence",
+    "cancelText": "Cancel",
+    "photoOptions": "Photo Options",
+    "takePhoto": "Take Photo"
+  },
+  "header": {
+    "iconLabel": "Back"
+  },
+  "contacts": {
+    "title": "Emergency Contacts"
+  },
+  "panic": {
+    "title": "Panic Button"
+  }
+}

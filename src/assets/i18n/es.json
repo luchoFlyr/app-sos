@@ -1,0 +1,21 @@
+{
+  "camera": {
+    "title": "Toma evidencias relacionadas",
+    "emptyTitle": "¡Aún no tienes evidencias tomadas!",
+    "emptySubtitle": "Cuándo tengas evidencias relacionadas, aquí te las mostraremos",
+    "shareText": "Compartir evidencia de peligro",
+    "deleteText": "Eliminar evidencia",
+    "cancelText": "Cancelar",
+    "photoOptions": "Opciones de Foto",
+    "takePhoto": "Tomar nueva evidencia"
+  },
+  "header": {
+    "iconLabel": "Atrás"
+  },
+  "contacts": {
+    "title": "Contactos de Emergencia"
+  },
+  "panic": {
+    "title": "Botón de Pánico"
+  }
+}
