@@ -9,13 +9,58 @@
     "photoOptions": "Opciones de Foto",
     "takePhoto": "Tomar nueva evidencia"
   },
-  "header": {
-    "iconLabel": "Atrás"
-  },
   "contacts": {
-    "title": "Contactos de Emergencia"
+    "add": {
+      "title": "Nuevo Contacto"
+    },
+    "edit": {
+      "title": "Editar Contacto"
+    },
+    "more": {
+      "title": "Opciones",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "name": "Nombre",
+    "name.placeholder": "Nombre completo",
+    "phone": "Teléfono",
+    "phone.placeholder": "Número de teléfono",
+    "message": "Mensaje",
+    "message.placeholder": "Mensaje de emergencia...",
+    "allow": {
+      "call": "Permitir llamada",
+      "location": "Permitir ubicación",
+      "photo": "Permitir enviar foto"
+    },
+    "addButton": "Agregar un nuevo Contacto",
+    "importButton": "Importar contacto desde contactos",
+    "header": "Contactos Agreados",
+    "countLabel": "Contactos",
+    "addContactTitle": "Nuevo Contacto de Emergencia",
+    "editContactTitle": "Editar Contacto",
+    "deleteTitle": "Eliminar Contacto",
+    "deleteMessage": "¿Estás seguro de que quieres eliminar este contacto?",
+    "alertTitle": "Contacto",
+    "importError": "Hubo un error al intentar importar el contacto.",
+    "noContactSelected": "No se seleccionó ningún contacto.",
+    "namePlaceholder": "Nombre completo",
+    "phonePlaceholder": "Número de teléfono",
+    "errors": {
+      "importUnavailable": "La función de importar contactos solo está disponible en dispositivo físico.",
+      "pluginUnavailable": "El plugin para importar contactos no está disponible.",
+      "invalidContact": "No se pudo obtener nombre o número del contacto."
+    }
   },
   "panic": {
     "title": "Botón de Pánico"
+  },
+  "header": {
+    "iconLabel": "Atrás"
+  },
+  "general": {
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "ok": "OK"
   }
 }

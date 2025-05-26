@@ -1,0 +1,45 @@
+<app-header [title]="editingIndex !== null
+    ? ('contact.edit.title' | translate)
+    : ('contact.add.title' | translate)" icon="person-add">
+</app-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Nombre</ion-label>
+    <ion-input [(ngModel)]="form.name" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Número</ion-label>
+    <ion-input [(ngModel)]="form.phone" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Mensaje</ion-label>
+    <ion-textarea [(ngModel)]="form.message"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Permitir llamada</ion-label>
+    <ion-toggle [(ngModel)]="form.allowCall"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Permitir ubicación</ion-label>
+    <ion-toggle [(ngModel)]="form.allowLocation"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Permitir enviar foto</ion-label>
+    <ion-toggle [(ngModel)]="form.allowPhoto"></ion-toggle>
+  </ion-item>
+
+  <ion-row class="ion-padding-top" justify-content-center>
+    <ion-col size="6">
+      <ion-button expand="block" color="success" (click)="saveContact()">Guardar</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="block" color="medium" (click)="cancel()">Cancelar</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

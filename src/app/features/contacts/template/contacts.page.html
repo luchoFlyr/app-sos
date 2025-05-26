@@ -1,32 +1,35 @@
-<app-header title="Contactos para emergencias" icon="people-outline"></app-header>
+<app-header [title]="'contacts.title' | translate" icon="people-outline">
+</app-header>
 
 <ion-content class="contacts-content" [fullscreen]="false">
   <div class="contacts-container">
+
     <div class="action-buttons">
       <ion-button expand="block" class="add-contact-btn" (click)="addEmergencyContact()">
         <ion-icon name="person-add" slot="start"></ion-icon>
-        Añadir Contacto de Emergencia
+        {{ 'contacts.addButton' | translate }}
       </ion-button>
 
       <ion-button expand="block" fill="outline" class="import-contacts-btn" (click)="importContacts()">
         <ion-icon name="download" slot="start"></ion-icon>
-        Importar Contactos
+        {{ 'contacts.importButton' | translate }}
       </ion-button>
     </div>
 
     <div class="contacts-list-container">
       <div class="contacts-header">
-        <h3>Contactos de Emergencia</h3>
-        <span class="contacts-count">{{contacts.length}} contacto(s)</span>
+        <h3>{{ 'contacts.header' | translate }}</h3>
+        <span class="contacts-count">
+          {{ contacts.length }} {{ 'contacts.countLabel' | translate }}
+        </span>
       </div>
 
       <div class="empty-state" *ngIf="contacts.length === 0">
         <ion-icon name="people-outline"></ion-icon>
-        <p>No hay contactos de emergencia</p>
-        <span>Añade contactos para emergencias</span>
+        <p>{{ 'contacts.emptyTitle' | translate }}</p>
+        <span>{{ 'contacts.emptySubtitle' | translate }}</span>
       </div>
 
-      <!-- Contacts List -->
       <div class="contacts-list" *ngIf="contacts.length > 0">
         <div class="contact-card" *ngFor="let contact of contacts; let i = index">
           <div class="contact-info">
@@ -34,27 +37,26 @@
               <ion-icon name="person"></ion-icon>
             </div>
             <div class="contact-details">
-              <h4>{{contact.name}}</h4>
-              <p>{{contact.phone}}</p>
-              <span class="contact-type">{{contact.type || 'Emergencia'}}</span>
+              <h4>{{ contact.name }}</h4>
+              <p>{{ contact.phone }}</p>
+              <span class="contact-type">
+                {{ contact.type || ('contacts.defaultType' | translate) }}
+              </span>
             </div>
           </div>
 
           <div class="contact-actions">
-            <ion-button fill="clear" size="small" class="call-btn" (click)="callContact(contact)">
+            <ion-button fill="clear" size="small" (click)="callContact(contact)">
               <ion-icon name="call"></ion-icon>
             </ion-button>
 
-            <ion-button fill="clear" size="small" class="edit-btn" (click)="editContact(contact, i)">
-              <ion-icon name="create"></ion-icon>
-            </ion-button>
-
-            <ion-button fill="clear" size="small" class="delete-btn" (click)="deleteContact(i)">
-              <ion-icon name="trash"></ion-icon>
+            <ion-button fill="clear" size="small" (click)="openContactOptions(contact, i)">
+              <ion-icon name="ellipsis-vertical"></ion-icon>
             </ion-button>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </ion-content>
