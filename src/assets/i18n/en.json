@@ -52,7 +52,28 @@
     }
   },
   "panic": {
-    "title": "Panic Button"
+    "title": "Panic Button",
+    "instructionText": "Press the button below and help will arrive soon.",
+    "toastActivated": "Panic alert activated. Sending emergency signal...",
+    "alertDeactivatedHeader": "Alert Deactivated",
+    "alertDeactivatedMessage": "Panic alert was deactivated after {{seconds}} seconds. Are you okay?",
+    "alertDeactivatedWrongBtn": "No, was a mistake",
+    "alertDeactivatedOkBtn": "Yes, I’m fine",
+    "shareLocationHeader": "Share Location",
+    "shareLocationMessage": "Your current location: {{coords}}.\nApproximate address: {{address}}.\n\nDo you want to share this location with your emergency contacts?",
+    "shareLocationBtn": "Share",
+    "locationErrorHeader": "Error",
+    "locationErrorMessage": "Could not get your location. Check permissions.",
+    "noContactsToast": "No emergency contacts registered.",
+    "smsEmergencyMessage": "I’m in danger! I need help immediately.",
+    "smsSentToast": "Alert sent to {{count}} emergency contacts.",
+    "smsFailToast": "Failed to send panic alert via SMS.",
+    "smsCancelMessage": "False alarm. Panic alert has been canceled.",
+    "smsCancelToast": "False alarm notice sent to your contacts.",
+    "smsSafeMessage": "Confirmation: I am safe.",
+    "smsSafeToast": "Safety confirmation sent to your contacts.",
+    "smsLocationMessage": "Here is my current location: {{link}}",
+    "smsLocationToast": "Location shared with your emergency contacts."
   },
   "header": {
     "iconLabel": "Back"

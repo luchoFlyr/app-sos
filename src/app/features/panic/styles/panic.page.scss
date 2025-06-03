@@ -1,0 +1,175 @@
+.panic-content {
+    --background: #f8f9fa;
+
+    .panic-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px;
+    }
+
+    .instruction-text {
+        text-align: center;
+        margin-bottom: 40px;
+        margin-top: 20px;
+
+        p {
+            color: #555;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin: 0;
+        }
+    }
+
+    .panic-button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+        flex: 1;
+    }
+
+    .panic-button-outer {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 59, 48, 0.1);
+        transition: all 0.3s ease;
+
+        &.active {
+            animation: pulse-outer 2s infinite;
+        }
+    }
+
+    .panic-button-middle {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 59, 48, 0.2);
+        transition: all 0.3s ease;
+
+        &.active {
+            animation: pulse-middle 2s infinite;
+        }
+    }
+
+    .panic-button {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background-color: #ff3b30;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 6px 12px rgba(255, 59, 48, 0.4);
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &.active {
+            animation: pulse-button 2s infinite;
+            background-color: #d9302a;
+        }
+
+        ion-icon {
+            font-size: 64px;
+            color: white;
+        }
+    }
+
+    .action-buttons {
+        width: 100%;
+        margin-top: auto;
+
+        .location-button {
+            --background: #007aff;
+            --background-activated: #0056cc;
+            --background-hover: #0066e6;
+            --border-radius: 24px;
+            --box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+            height: 50px;
+            font-size: 16px;
+            font-weight: 600;
+
+            ion-icon {
+                font-size: 20px;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+ion-header ion-toolbar {
+    --background: #007aff;
+    --color: white;
+
+    ion-title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    ion-buttons ion-button {
+        --color: white;
+    }
+}
+
+/* Pulse Animations */
+@keyframes pulse-outer {
+    0% {
+        transform: scale(1);
+        background-color: rgba(255, 59, 48, 0.1);
+    }
+
+    50% {
+        transform: scale(1.05);
+        background-color: rgba(255, 59, 48, 0.2);
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: rgba(255, 59, 48, 0.1);
+    }
+}
+
+@keyframes pulse-middle {
+    0% {
+        transform: scale(1);
+        background-color: rgba(255, 59, 48, 0.2);
+    }
+
+    50% {
+        transform: scale(1.05);
+        background-color: rgba(255, 59, 48, 0.3);
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: rgba(255, 59, 48, 0.2);
+    }
+}
+
+@keyframes pulse-button {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(255, 59, 48, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 59, 48, 0);
+    }
+}

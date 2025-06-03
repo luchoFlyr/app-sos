@@ -52,7 +52,28 @@
     }
   },
   "panic": {
-    "title": "Botón de Pánico"
+    "title": "Botón de Pánico",
+    "instructionText": "Presione el botón a continuación y la ayuda le llegará pronto.",
+    "toastActivated": "Alerta de pánico activada. Enviando señal de emergencia...",
+    "alertDeactivatedHeader": "Alerta Desactivada",
+    "alertDeactivatedMessage": "La alerta de pánico ha sido desactivada después de {{seconds}} segundos. ¿Está todo bien?",
+    "alertDeactivatedWrongBtn": "No, fue un error",
+    "alertDeactivatedOkBtn": "Sí, estoy bien",
+    "shareLocationHeader": "Compartir Ubicación",
+    "shareLocationMessage": "Su ubicación actual: {{coords}}.\nDirección aproximada: {{address}}.\n\n¿Desea compartir esta ubicación con sus contactos de emergencia?",
+    "shareLocationBtn": "Compartir",
+    "locationErrorHeader": "Error",
+    "locationErrorMessage": "No se pudo obtener su ubicación. Verifique permisos.",
+    "noContactsToast": "No hay contactos de emergencia registrados.",
+    "smsEmergencyMessage": "¡Estoy en peligro! Necesito ayuda inmediatamente.",
+    "smsSentToast": "Alerta enviada a {{count}} contactos de emergencia.",
+    "smsFailToast": "No se pudo enviar la alerta por SMS.",
+    "smsCancelMessage": "Falsa alarma. La alerta de pánico ha sido cancelada.",
+    "smsCancelToast": "Aviso de falsa alarma enviado a sus contactos.",
+    "smsSafeMessage": "Confirmación: Estoy a salvo.",
+    "smsSafeToast": "Confirmación de seguridad enviada a sus contactos.",
+    "smsLocationMessage": "Esta es mi ubicación actual: {{link}}",
+    "smsLocationToast": "Ubicación compartida con sus contactos de emergencia."
   },
   "header": {
     "iconLabel": "Atrás"

@@ -1,4 +1,3 @@
-// features/menu/menu-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuPage } from './menu.page';

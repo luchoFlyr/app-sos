@@ -1,11 +1,26 @@
 <app-header title="Botón de pánico" icon="people-outline"></app-header>
 
-<ion-content [fullscreen]="false">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Inicio</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="panic-content" [fullscreen]="true">
+  <div class="panic-container">
+    <div class="instruction-text">
+      <p>Presione el botón a continuación y la ayuda le llegará pronto.</p>
+    </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <div class="panic-button-container">
+      <div class="panic-button-outer" [class.active]="panicActive">
+        <div class="panic-button-middle" [class.active]="panicActive">
+          <button class="panic-button" [class.active]="panicActive" (click)="togglePanic()">
+            <ion-icon name="alert"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <ion-button expand="block" class="location-button" (click)="shareLocation()">
+        <ion-icon name="location-outline" slot="start"></ion-icon>
+        Compartir Ubicación
+      </ion-button>
+    </div>
+  </div>
 </ion-content>

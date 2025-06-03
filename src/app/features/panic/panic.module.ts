@@ -7,6 +7,7 @@ import { PanicPageRoutingModule } from './panic-routing.module';
 
 import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 import { SharedModule } from '../../shared/shared.module';
+import { SMS } from '@awesome-cordova-plugins/sms/ngx';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { SharedModule } from '../../shared/shared.module';
     PanicPageRoutingModule,
     SharedModule
   ],
-  declarations: [PanicPage]
+  declarations: [PanicPage],
+  providers: [SMS]
 })
 export class PanicPageModule { }
