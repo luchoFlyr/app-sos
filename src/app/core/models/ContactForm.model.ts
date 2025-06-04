@@ -3,6 +3,7 @@ export interface ContactForm {
     phone: string;
     message: string;
     allowCall: boolean;
+    allowSms?: boolean;
     allowLocation: boolean;
     allowPhoto: boolean;
     type?: string

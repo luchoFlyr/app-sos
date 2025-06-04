@@ -1,66 +1,75 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Platform, ToastController } from '@ionic/angular';
-import { SMS, SmsOptions } from '@awesome-cordova-plugins/sms/ngx';
+import { SmsOptions as CordovaSmsOptions, SMS } from '@awesome-cordova-plugins/sms/ngx';
+import { Platform } from '@ionic/angular';
+import { firstValueFrom } from 'rxjs';
+
+import { environment } from '../../../environments/environment';
+import { PlatformsEnum } from "../enums/platforms.enum";
+import { TextBeltResponse } from '../models/TextBellResponse.model';
+import { ToastService } from './toast.service';
+import { TranslationService } from './translation.service';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class SmsService {
+  private readonly TEXT_BELT_URL = environment.smsApi_url;
+  private readonly TEXT_BELT_API_KEY = environment.textBelt_Api_Key;
 
   constructor(
     private platform: Platform,
     private sms: SMS,
-    private toastCtrl: ToastController
+    private http: HttpClient,
+    private toastService: ToastService,
+    private translationService: TranslationService,
+
   ) { }
 
-  /**
-   * Envía SMS de forma silenciosa en Android (requiere permiso SEND_SMS).
-   * En iOS sólo muestra un toast indicando que no es posible.
-   * @param phoneNumbers Array de números (p.ej. ["+573001234567", "3009876543"])
-   * @param message Texto del SMS
-   */
-  public async sendSmsSilent(
-    phoneNumbers: string[],
-    message: string
-  ): Promise<boolean> {
-    if (!this.platform.is('android')) {
-      await this.showToast(
-        'El envío automático de SMS sólo está disponible en Android.',
-        'warning'
-      );
+  public async sendSmsSilentLocal(phoneNumbers: string[], message: string): Promise<boolean> {
+    if (!this.platform.is(PlatformsEnum.ANDROID)) {
+      await this.toastService.showToastAsync(this.translationService.instant('sms.platformNoSupported'), 'warning');
       return false;
     }
 
+    const numbersCsv = phoneNumbers.join(',');
+
     try {
-      // Sólo estas dos propiedades son válidas en SmsOptions:
-      const options: SmsOptions = {
+      const options: CordovaSmsOptions = {
         replaceLineBreaks: false,
         android: {
-          // cadena vacía => envía silencioso en Android
           intent: ''
         }
       };
-
-      // ¡Atención! Ahora enviamos los parámetros por separado, no dentro de un objeto:
-      await this.sms.send(phoneNumbers, message, options);
+      await this.sms.send(numbersCsv, message, options);
       return true;
     } catch (err: any) {
-      console.error('Error en sendSmsSilent:', err);
-      await this.showToast(
-        'Error enviando SMS: ' + (err.message || err),
-        'danger'
-      );
+      await this.toastService.showToastAsync(this.translationService.instant('sms.errors.sendSilentSms') + (err.message || err), 'danger');
       return false;
     }
   }
 
+  public async sendSmsViaTextBelt(phoneNumber: string, message: string,): Promise<boolean> {
+    try {
+      const payload = {
+        phone: phoneNumber,
+        message,
+        key: this.TEXT_BELT_API_KEY
+      };
+      const response = await firstValueFrom<TextBeltResponse>(
+        this.http.post<TextBeltResponse>(this.TEXT_BELT_URL, payload)
+      );
 
-  private async showToast(text: string, color: 'success' | 'warning' | 'danger' = 'success') {
-    const toast = await this.toastCtrl.create({
-      message: text,
-      duration: 3000,
-      color
-    });
-    await toast.present();
+      if (response.success) {
+        return true;
+      } else {
+        await this.toastService.showToastAsync(this.translationService.instant('sms.errors.sendAPIsms') + (response.error || 'Unkown'), 'danger');
+        return false;
+      }
+    } catch (err: any) {
+      await this.toastService.showToastAsync(this.translationService.instant('sms.errors.sendAPIsms') + (err.message || err), 'danger');
+      return false;
+    }
   }
 }

@@ -75,6 +75,13 @@
     "smsLocationMessage": "Esta es mi ubicación actual: {{link}}",
     "smsLocationToast": "Ubicación compartida con sus contactos de emergencia."
   },
+  "sms": {
+    "errors":{
+      "sendSilentSms": "No se pudo enviar el SMS de alerta silenciosa. Error: ",
+      "sendAPIsms": "No se pudo enviar el SMS mediante la API. Error: "
+    },
+    "platformNotSupported": "La plataforma no admite el envío de SMS."
+  },
   "header": {
     "iconLabel": "Atrás"
   },

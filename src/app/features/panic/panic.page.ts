@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AlertController, ToastController, Platform } from '@ionic/angular';
+import { AlertController, Platform, ToastController } from '@ionic/angular';
 
-import { LocationService } from '../../core/services/location.service';
-import { GeocodingService } from '../../core/services/geocoding.service';
-import { TranslationService } from '../../core/services/translation.service';
-import { SmsService } from '../../core/services/sms.service';
-import { ContactService } from '../../core/services/contact.service';
 import { ContactForm } from '../../core/models/ContactForm.model';
+import { ContactService } from '../../core/services/contact.service';
+import { GeocodingService } from '../../core/services/geocoding.service';
+import { LocationService } from '../../core/services/location.service';
+import { SmsService } from '../../core/services/sms.service';
+import { ToastService } from '../../core/services/toast.service';
+import { TranslationService } from '../../core/services/translation.service';
 
 @Component({
   selector: 'app-panic',
@@ -25,10 +26,11 @@ export class PanicPage implements OnInit, OnDestroy {
     private toastController: ToastController,
     private locationService: LocationService,
     private geocodingService: GeocodingService,
-    private translation: TranslationService,
+    private translationService: TranslationService,
     private smsService: SmsService,
     private contactService: ContactService,
-    private platform: Platform
+    private toastService: ToastService,
+
   ) { }
 
   ngOnInit(): void { }
@@ -49,16 +51,13 @@ export class PanicPage implements OnInit, OnDestroy {
     this.panicActive = true;
     this.panicStartTime = Date.now();
 
-    const toast = await this.toastController.create({
-      message: this.translation.instant('panic.toastActivated'),
-      duration: 3000,
-      position: 'top',
-      color: 'danger',
-      buttons: [
-        { text: this.translation.instant('general.ok'), role: 'cancel' }
-      ]
-    });
-    await toast.present();
+    await this.toastService.showToastAsync(
+      this.translationService.instant('sms.platformNoSupported'),
+      'danger',
+      3000,
+      'top',
+      [{ text: this.translationService.instant('general.ok'), role: 'cancel' }]
+    );
 
     this.panicTimer = setInterval(() => {
       const elapsed = Math.floor((Date.now() - (this.panicStartTime || 0)) / 1000);
@@ -78,16 +77,16 @@ export class PanicPage implements OnInit, OnDestroy {
     this.panicStartTime = null;
 
     const alert = await this.alertController.create({
-      header: this.translation.instant('panic.alertDeactivatedHeader'),
-      message: this.translation.instant('panic.alertDeactivatedMessage', { seconds: durationSec }),
+      header: this.translationService.instant('panic.alertDeactivatedHeader'),
+      message: this.translationService.instant('panic.alertDeactivatedMessage', { seconds: durationSec }),
       buttons: [
         {
-          text: this.translation.instant('panic.alertDeactivatedWrongBtn'),
+          text: this.translationService.instant('panic.alertDeactivatedWrongBtn'),
           role: 'cancel',
           handler: () => this.sendCancelAlert()
         },
         {
-          text: this.translation.instant('panic.alertDeactivatedOkBtn'),
+          text: this.translationService.instant('panic.alertDeactivatedOkBtn'),
           handler: () => this.sendSafetyConfirmation()
         }
       ]
@@ -109,8 +108,8 @@ export class PanicPage implements OnInit, OnDestroy {
       const mapsLink = this.locationService.getSearchLink(latitude, longitude);
 
       const alert = await this.alertController.create({
-        header: this.translation.instant('panic.shareLocationHeader'),
-        message: this.translation.instant(
+        header: this.translationService.instant('panic.shareLocationHeader'),
+        message: this.translationService.instant(
           'panic.shareLocationMessage',
           {
             coords: `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`,
@@ -118,9 +117,9 @@ export class PanicPage implements OnInit, OnDestroy {
           }
         ),
         buttons: [
-          { text: this.translation.instant('general.cancel'), role: 'cancel' },
+          { text: this.translationService.instant('general.cancel'), role: 'cancel' },
           {
-            text: this.translation.instant('panic.shareLocationBtn'),
+            text: this.translationService.instant('panic.shareLocationBtn'),
             handler: () => this.sendLocationToContacts(latitude, longitude, mapsLink)
           }
         ]
@@ -128,11 +127,10 @@ export class PanicPage implements OnInit, OnDestroy {
       await alert.present();
 
     } catch (err) {
-      console.error('Error obteniendo ubicación:', err);
       const alertError = await this.alertController.create({
-        header: this.translation.instant('panic.locationErrorHeader'),
-        message: this.translation.instant('panic.locationErrorMessage'),
-        buttons: [this.translation.instant('general.ok')]
+        header: this.translationService.instant('panic.locationErrorHeader'),
+        message: this.translationService.instant('panic.locationErrorMessage'),
+        buttons: [this.translationService.instant('general.ok')]
       });
       await alertError.present();
     }
@@ -140,25 +138,20 @@ export class PanicPage implements OnInit, OnDestroy {
 
   private async sendEmergencyAlert(): Promise<void> {
     const contacts = this.contactService.getAll();
+    // const phoneNumbers = contacts.filter((c:ContactForm) => c.allowSms == true).map((c: ContactForm) => c.phone);
     const phoneNumbers = contacts.map((c: ContactForm) => c.phone);
 
     if (phoneNumbers.length === 0) {
-      const toastNoContacts = await this.toastController.create({
-        message: this.translation.instant('panic.noContactsToast'),
-        duration: 3000,
-        position: 'bottom'
-      });
-      await toastNoContacts.present();
+      await this.toastService.showToastAsync(this.translationService.instant('panic.noContactsToast'), 'warning', 3000, 'bottom');
       return;
     }
 
-    const message = this.translation.instant('panic.smsEmergencyMessage');
+    const message = this.translationService.instant('panic.smsEmergencyMessage');
 
-    // En Android, enviará silenciosamente. En iOS mostrará toast de “no disponible”
-    const sent = await this.smsService.sendSmsSilent(phoneNumbers, message);
-    if (sent) {
+    const sentSMS = await this.smsService.sendSmsSilentLocal(phoneNumbers, message);
+    if (sentSMS) {
       const toastOk = await this.toastController.create({
-        message: this.translation.instant('panic.smsSentToast', { count: phoneNumbers.length }),
+        message: this.translationService.instant('panic.smsSentToast', { count: phoneNumbers.length }),
         duration: 3000,
         position: 'bottom',
         color: 'success'
@@ -172,8 +165,8 @@ export class PanicPage implements OnInit, OnDestroy {
     const phoneNumbers = contacts.map((c: ContactForm) => c.phone);
     if (phoneNumbers.length === 0) return;
 
-    const message = this.translation.instant('panic.smsCancelMessage');
-    await this.smsService.sendSmsSilent(phoneNumbers, message);
+    const message = this.translationService.instant('panic.smsCancelMessage');
+    await this.smsService.sendSmsSilentLocal(phoneNumbers, message);
   }
 
   private async sendSafetyConfirmation(): Promise<void> {
@@ -181,13 +174,13 @@ export class PanicPage implements OnInit, OnDestroy {
     const phoneNumbers = contacts.map((c: ContactForm) => c.phone);
     if (phoneNumbers.length === 0) return;
 
-    const message = this.translation.instant('panic.smsSafeMessage');
-    await this.smsService.sendSmsSilent(phoneNumbers, message);
+    const message = this.translationService.instant('panic.smsSafeMessage');
+    await this.smsService.sendSmsSilentLocal(phoneNumbers, message);
   }
 
   private async sendLocationToContacts(
-    latitude: number,
-    longitude: number,
+    _latitude: number,
+    _longitude: number,
     mapsUrl: string
   ): Promise<void> {
     const contacts = this.contactService.getAll();
@@ -195,7 +188,7 @@ export class PanicPage implements OnInit, OnDestroy {
 
     if (phoneNumbers.length === 0) {
       const toast = await this.toastController.create({
-        message: this.translation.instant('panic.noContactsToast'),
+        message: this.translationService.instant('panic.noContactsToast'),
         duration: 3000,
         position: 'bottom'
       });
@@ -203,7 +196,7 @@ export class PanicPage implements OnInit, OnDestroy {
       return;
     }
 
-    const message = this.translation.instant('panic.smsLocationMessage', { link: mapsUrl });
-    await this.smsService.sendSmsSilent(phoneNumbers, message);
+    const message = this.translationService.instant('panic.smsLocationMessage', { link: mapsUrl });
+    await this.smsService.sendSmsSilentLocal(phoneNumbers, message);
   }
 }
