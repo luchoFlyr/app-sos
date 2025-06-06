@@ -9,3 +9,6 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting(),
 );
+
+// Provide a minimal process variable for tests that rely on process.env
+(globalThis as any).process = { env: {} };
