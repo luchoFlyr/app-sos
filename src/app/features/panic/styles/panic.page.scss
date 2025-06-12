@@ -1,0 +1,81 @@
+
+
+ion-content{
+    --background: var(--ion-color-background);
+}
+ion-header ion-toolbar{
+    --background: var(--ion-color-background);
+}
+
+
+.panic-text {
+  margin-top: 10px;
+  font-size: 18px;
+  color: var(--ion-color-medium);
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal; 
+  text-align: center;  
+  line-height: 1.4;    
+}
+
+
+.panic-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;  /* Aumenta este valor si quieres subir todo */
+  gap: 20px; /* Separación vertical automática */
+}
+
+.panic-text {
+  font-size: 18px;
+  color: var(--ion-color-medium);
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.panic-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panic-button {
+  --background: var(--ion-color-danger);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 12px;
+  cursor: pointer;
+  animation: blink-red 1s infinite;
+}
+
+.big-icon {
+  font-size: 80px;
+}
+
+@keyframes blink-red {
+  0%, 100% {
+    background-color: var(--ion-color-danger);
+  }
+  50% {
+    background-color: #ff4d4d;
+  }
+}
+
+.button-comp {
+  --background: var(--ion-color-light-blue);
+  background: var(--ion-color-light-blue);
+  border-radius: 150px;
+  width: 200px;
+  text-transform: none;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto; 
+}

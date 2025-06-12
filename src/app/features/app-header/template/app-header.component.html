@@ -1,8 +1,11 @@
 <ion-header>
-  <ion-toolbar [color]="color">
+  <ion-toolbar [ngStyle]="{'--background': 'var(--ion-color-primary)'}">
     <ion-title>
       <ion-icon [name]="icon" class="header-icon"></ion-icon>
       {{ title }}
+
+       
     </ion-title>
+
   </ion-toolbar>
 </ion-header>
