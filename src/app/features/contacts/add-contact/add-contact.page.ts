@@ -47,7 +47,7 @@ export class AddContactPage implements OnInit {
     });
   }
 
-  saveContact(): void {
+  public saveContact(): void {
     if (this.editingIndex !== null) {
       this.contactService.update(this.editingIndex, this.form);
     } else {
@@ -57,7 +57,7 @@ export class AddContactPage implements OnInit {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  cancel(): void {
+  public cancel(): void {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

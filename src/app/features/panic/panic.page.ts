@@ -47,6 +47,48 @@ export class PanicPage implements OnInit, OnDestroy {
     }
   }
 
+  public clearPanicTimer(): void {
+    if (this.panicTimer) {
+      clearInterval(this.panicTimer);
+      this.panicTimer = null;
+    }
+  }
+
+  public async shareLocation(): Promise<void> {
+    try {
+      const { latitude, longitude } = await this.locationService.getCurrentLocation();
+      const { formatted } = await this.geocodingService.reverseGeocode(latitude, longitude);
+      const mapsLink = this.locationService.getSearchLink(latitude, longitude);
+
+      const alert = await this.alertController.create({
+        header: this.translationService.instant('panic.shareLocationHeader'),
+        message: this.translationService.instant(
+          'panic.shareLocationMessage',
+          {
+            coords: `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`,
+            address: formatted
+          }
+        ),
+        buttons: [
+          { text: this.translationService.instant('general.cancel'), role: 'cancel' },
+          {
+            text: this.translationService.instant('panic.shareLocationBtn'),
+            handler: () => this.sendLocationToContacts(latitude, longitude, mapsLink)
+          }
+        ]
+      });
+      await alert.present();
+
+    } catch (err) {
+      const alertError = await this.alertController.create({
+        header: this.translationService.instant('panic.locationErrorHeader'),
+        message: this.translationService.instant('panic.locationErrorMessage'),
+        buttons: [this.translationService.instant('general.ok')]
+      });
+      await alertError.present();
+    }
+  }
+
   private async activatePanic(): Promise<void> {
     this.panicActive = true;
     this.panicStartTime = Date.now();
@@ -92,48 +134,6 @@ export class PanicPage implements OnInit, OnDestroy {
       ]
     });
     await alert.present();
-  }
-
-  private clearPanicTimer(): void {
-    if (this.panicTimer) {
-      clearInterval(this.panicTimer);
-      this.panicTimer = null;
-    }
-  }
-
-  public async shareLocation(): Promise<void> {
-    try {
-      const { latitude, longitude } = await this.locationService.getCurrentLocation();
-      const { formatted } = await this.geocodingService.reverseGeocode(latitude, longitude);
-      const mapsLink = this.locationService.getSearchLink(latitude, longitude);
-
-      const alert = await this.alertController.create({
-        header: this.translationService.instant('panic.shareLocationHeader'),
-        message: this.translationService.instant(
-          'panic.shareLocationMessage',
-          {
-            coords: `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`,
-            address: formatted
-          }
-        ),
-        buttons: [
-          { text: this.translationService.instant('general.cancel'), role: 'cancel' },
-          {
-            text: this.translationService.instant('panic.shareLocationBtn'),
-            handler: () => this.sendLocationToContacts(latitude, longitude, mapsLink)
-          }
-        ]
-      });
-      await alert.present();
-
-    } catch (err) {
-      const alertError = await this.alertController.create({
-        header: this.translationService.instant('panic.locationErrorHeader'),
-        message: this.translationService.instant('panic.locationErrorMessage'),
-        buttons: [this.translationService.instant('general.ok')]
-      });
-      await alertError.present();
-    }
   }
 
   private async sendEmergencyAlert(): Promise<void> {

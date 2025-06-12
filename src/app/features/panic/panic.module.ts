@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { PanicPage } from './panic.page';
 import { PanicPageRoutingModule } from './panic-routing.module';
 
-import { ExploreContainerComponentModule } from '../../explore-container/explore-container.module';
 import { SharedModule } from '../../shared/shared.module';
 import { SMS } from '@awesome-cordova-plugins/sms/ngx';
 
@@ -14,7 +13,6 @@ import { SMS } from '@awesome-cordova-plugins/sms/ngx';
     IonicModule,
     CommonModule,
     FormsModule,
-    ExploreContainerComponentModule,
     PanicPageRoutingModule,
     SharedModule
   ],

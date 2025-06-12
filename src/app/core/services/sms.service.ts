@@ -15,8 +15,8 @@ import { TranslationService } from './translation.service';
 })
 
 export class SmsService {
-  private readonly TEXT_BELT_URL = environment.smsApi_url;
-  private readonly TEXT_BELT_API_KEY = environment.textBelt_Api_Key;
+  private readonly TEXT_BELT_URL = '';
+  private readonly TEXT_BELT_API_KEY = '';
 
   constructor(
     private platform: Platform,
