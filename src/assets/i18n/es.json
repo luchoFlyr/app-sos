@@ -1,0 +1,94 @@
+{
+  "camera": {
+    "title": "Toma evidencias relacionadas",
+    "emptyTitle": "¡Aún no tienes evidencias tomadas!",
+    "emptySubtitle": "Cuándo tengas evidencias relacionadas, aquí te las mostraremos",
+    "shareText": "Compartir evidencia de peligro",
+    "deleteText": "Eliminar evidencia",
+    "cancelText": "Cancelar",
+    "photoOptions": "Opciones de Foto",
+    "takePhoto": "Tomar nueva evidencia"
+  },
+  "contacts": {
+    "add": {
+      "title": "Nuevo Contacto"
+    },
+    "edit": {
+      "title": "Editar Contacto"
+    },
+    "more": {
+      "title": "Opciones",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "name": "Nombre",
+    "name.placeholder": "Nombre completo",
+    "phone": "Teléfono",
+    "phone.placeholder": "Número de teléfono",
+    "message": "Mensaje",
+    "message.placeholder": "Mensaje de emergencia...",
+    "allow": {
+      "call": "Permitir llamada",
+      "location": "Permitir ubicación",
+      "photo": "Permitir enviar foto"
+    },
+    "addButton": "Agregar un nuevo Contacto",
+    "importButton": "Importar contacto desde contactos",
+    "header": "Contactos Agreados",
+    "countLabel": "Contactos",
+    "addContactTitle": "Nuevo Contacto de Emergencia",
+    "editContactTitle": "Editar Contacto",
+    "deleteTitle": "Eliminar Contacto",
+    "deleteMessage": "¿Estás seguro de que quieres eliminar este contacto?",
+    "alertTitle": "Contacto",
+    "importError": "Hubo un error al intentar importar el contacto.",
+    "noContactSelected": "No se seleccionó ningún contacto.",
+    "namePlaceholder": "Nombre completo",
+    "phonePlaceholder": "Número de teléfono",
+    "errors": {
+      "importUnavailable": "La función de importar contactos solo está disponible en dispositivo físico.",
+      "pluginUnavailable": "El plugin para importar contactos no está disponible.",
+      "invalidContact": "No se pudo obtener nombre o número del contacto."
+    }
+  },
+  "panic": {
+    "title": "Botón de Pánico",
+    "instructionText": "Presione el botón a continuación y la ayuda le llegará pronto.",
+    "toastActivated": "Alerta de pánico activada. Enviando señal de emergencia...",
+    "alertDeactivatedHeader": "Alerta Desactivada",
+    "alertDeactivatedMessage": "La alerta de pánico ha sido desactivada después de {{seconds}} segundos. ¿Está todo bien?",
+    "alertDeactivatedWrongBtn": "No, fue un error",
+    "alertDeactivatedOkBtn": "Sí, estoy bien",
+    "shareLocationHeader": "Compartir Ubicación",
+    "shareLocationMessage": "Su ubicación actual: {{coords}}.\nDirección aproximada: {{address}}.\n\n¿Desea compartir esta ubicación con sus contactos de emergencia?",
+    "shareLocationBtn": "Compartir",
+    "locationErrorHeader": "Error",
+    "locationErrorMessage": "No se pudo obtener su ubicación. Verifique permisos.",
+    "noContactsToast": "No hay contactos de emergencia registrados.",
+    "smsEmergencyMessage": "¡Estoy en peligro! Necesito ayuda inmediatamente.",
+    "smsSentToast": "Alerta enviada a {{count}} contactos de emergencia.",
+    "smsFailToast": "No se pudo enviar la alerta por SMS.",
+    "smsCancelMessage": "Falsa alarma. La alerta de pánico ha sido cancelada.",
+    "smsCancelToast": "Aviso de falsa alarma enviado a sus contactos.",
+    "smsSafeMessage": "Confirmación: Estoy a salvo.",
+    "smsSafeToast": "Confirmación de seguridad enviada a sus contactos.",
+    "smsLocationMessage": "Esta es mi ubicación actual: {{link}}",
+    "smsLocationToast": "Ubicación compartida con sus contactos de emergencia."
+  },
+  "sms": {
+    "errors":{
+      "sendSilentSms": "No se pudo enviar el SMS de alerta silenciosa. Error: ",
+      "sendAPIsms": "No se pudo enviar el SMS mediante la API. Error: "
+    },
+    "platformNotSupported": "La plataforma no admite el envío de SMS."
+  },
+  "header": {
+    "iconLabel": "Atrás"
+  },
+  "general": {
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "ok": "OK"
+  }
+}

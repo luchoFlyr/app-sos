@@ -1,11 +1,11 @@
-<app-header title="Fotos para evidencias" icon="people-outline"></app-header>
+<app-header [title]="'camera.title' | translate" icon="people-outline"></app-header>
 
 <ion-content class="camera-content" [fullscreen]="false">
   <div class="photo-container">
     <div class="empty-state" *ngIf="photoService.photos.length === 0">
       <ion-icon name="images-outline"></ion-icon>
-      <p>¡Aún no tienes evidencias tomadas!</p>
-      <span>Cuándo tengas evidencias relacionadas, aquí te las mostraremos</span>
+      <p>{{ 'camera.emptyTitle' | translate }}</p>
+      <span>{{ 'camera.emptySubtitle' | translate }}</span>
     </div>
 
     <ion-grid *ngIf="photoService.photos.length > 0">
@@ -25,7 +25,7 @@
   <div class="camera-footer">
     <ion-button expand="block" class="capture-button" (click)="addPhotoToGallery()">
       <ion-icon name="camera" slot="start"></ion-icon>
-      Tomar Foto
+      {{ 'camera.takePhoto' | translate }}
     </ion-button>
   </div>
 </ion-content>

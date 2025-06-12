@@ -7,30 +7,30 @@ const routes: Routes = [
     path: 'menu',
     component: MenuPage,
     children: [
-      {
-        path: 'panic',
-        loadChildren: () => import('../panic/panic.module').then(m => m.PanicPageModule)
-      },
+      { path: 'panic', loadChildren: () => import('../panic/panic.module').then(m => m.PanicPageModule) },
       {
         path: 'camera',
         loadChildren: () => import('../camera/camera.module').then(m => m.CameraPageModule)
       },
       {
         path: 'contacts',
-        loadChildren: () => import('../contacts/contacts.module').then(m => m.ContactsPageModule)
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../contacts/contacts.module')
+              .then(m => m.ContactsPageModule)
+          },
+          {
+            path: 'add-contact',
+            loadChildren: () => import('../contacts/add-contact/add-contact.module')
+              .then(m => m.AddContactPageModule)
+          }
+        ]
       },
-      {
-        path: '',
-        redirectTo: 'panic',
-        pathMatch: 'full'
-      }
+      { path: '', redirectTo: 'panic', pathMatch: 'full' }
     ]
   },
-  {
-    path: '',
-    redirectTo: '/menu/panic',
-    pathMatch: 'full'
-  }
+  { path: '', redirectTo: '/menu/panic', pathMatch: 'full' }
 ];
 
 @NgModule({

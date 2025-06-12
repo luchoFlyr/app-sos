@@ -6,6 +6,7 @@ import { CameraPage } from './camera.page';
 import { CameraPageRoutingModule } from './camera-routing.module';
 
 import { SharedModule } from '../../shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     FormsModule,
     CameraPageRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslateModule 
   ],
   declarations: [CameraPage]
 })

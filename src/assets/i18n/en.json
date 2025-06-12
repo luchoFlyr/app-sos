@@ -1,0 +1,87 @@
+{
+  "camera": {
+    "title": "Capture Related Evidence",
+    "emptyTitle": "You haven't taken any evidence yet!",
+    "emptySubtitle": "When you have related evidence, we'll show them here",
+    "shareText": "Share danger evidence",
+    "deleteText": "Delete evidence",
+    "cancelText": "Cancel",
+    "photoOptions": "Photo Options",
+    "takePhoto": "Capture new evidence"
+  },
+  "contacts": {
+    "add": {
+      "title": "New Contact"
+    },
+    "edit": {
+      "title": "Edit Contact"
+    },
+    "more": {
+      "title": "Options",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "name": "Name",
+    "name.placeholder": "Full name",
+    "phone": "Phone",
+    "phone.placeholder": "Phone number",
+    "message": "Message",
+    "message.placeholder": "Emergency message...",
+    "allow": {
+      "call": "Allow call",
+      "location": "Allow location",
+      "photo": "Allow sending photo"
+    },
+    "addButton": "Add a new Contact",
+    "importButton": "Import contact from contacts",
+    "header": "Added Contacts",
+    "countLabel": "Contacts",
+    "addContactTitle": "New Emergency Contact",
+    "editContactTitle": "Edit Contact",
+    "deleteTitle": "Delete Contact",
+    "deleteMessage": "Are you sure you want to delete this contact?",
+    "alertTitle": "Contact",
+    "importError": "There was an error trying to import the contact.",
+    "noContactSelected": "No contact was selected.",
+    "namePlaceholder": "Full name",
+    "phonePlaceholder": "Phone number",
+    "errors": {
+      "importUnavailable": "Import is only available on a physical device.",
+      "pluginUnavailable": "The contact import plugin is unavailable.",
+      "invalidContact": "Could not retrieve contact name or number."
+    }
+  },
+  "panic": {
+    "title": "Panic Button",
+    "instructionText": "Press the button below and help will arrive soon.",
+    "toastActivated": "Panic alert activated. Sending emergency signal...",
+    "alertDeactivatedHeader": "Alert Deactivated",
+    "alertDeactivatedMessage": "Panic alert was deactivated after {{seconds}} seconds. Are you okay?",
+    "alertDeactivatedWrongBtn": "No, was a mistake",
+    "alertDeactivatedOkBtn": "Yes, I’m fine",
+    "shareLocationHeader": "Share Location",
+    "shareLocationMessage": "Your current location: {{coords}}.\nApproximate address: {{address}}.\n\nDo you want to share this location with your emergency contacts?",
+    "shareLocationBtn": "Share",
+    "locationErrorHeader": "Error",
+    "locationErrorMessage": "Could not get your location. Check permissions.",
+    "noContactsToast": "No emergency contacts registered.",
+    "smsEmergencyMessage": "I’m in danger! I need help immediately.",
+    "smsSentToast": "Alert sent to {{count}} emergency contacts.",
+    "smsFailToast": "Failed to send panic alert via SMS.",
+    "smsCancelMessage": "False alarm. Panic alert has been canceled.",
+    "smsCancelToast": "False alarm notice sent to your contacts.",
+    "smsSafeMessage": "Confirmation: I am safe.",
+    "smsSafeToast": "Safety confirmation sent to your contacts.",
+    "smsLocationMessage": "Here is my current location: {{link}}",
+    "smsLocationToast": "Location shared with your emergency contacts."
+  },
+  "header": {
+    "iconLabel": "Back"
+  },
+  "general": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "ok": "OK"
+  }
+}

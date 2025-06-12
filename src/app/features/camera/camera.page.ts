@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, LoadingController } from '@ionic/angular';
+
+import { AddressComponents } from '../../core/models/AddressComponent.Model';
+import { UserPhoto } from '../../core/models/UserPhoto.Model';
+import { GeocodingService } from '../../core/services/geocoding.service';
+import { LocationService } from '../../core/services/location.service';
 import { PhotoService } from '../../core/services/photo.service';
-import { ShareService } from 'src/app/core/services/share.service';
-import { LocationService } from 'src/app/core/services/location.service';
-import { GeocodingService } from 'src/app/core/services/geocoding.service';
-import { UserPhoto } from 'src/app/core/models/UserPhoto.Model';
-import { AddressComponents } from 'src/app/core/models/AddressComponent.Model';
+import { ShareService } from '../../core/services/share.service';
+import { TranslationService } from '../../core/services/translation.service';
 
 @Component({
   selector: 'app-camera',
@@ -14,18 +16,27 @@ import { AddressComponents } from 'src/app/core/models/AddressComponent.Model';
   standalone: false,
 })
 export class CameraPage implements OnInit {
-
+  public titleComponent: string = '';
   constructor(
     public photoService: PhotoService,
     private actionSheetController: ActionSheetController,
     private loadingCtrl: LoadingController,
     private shareService: ShareService,
     private locationService: LocationService,
-    private geocodingService: GeocodingService
+    private geocodingService: GeocodingService,
+    private translation: TranslationService
   ) { }
 
   async ngOnInit(): Promise<void> {
+    this.setupEvents();
+  }
+
+  public async setupEvents(): Promise<void> {
     await this.photoService.loadSaved();
+  }
+
+  public getTranslation(key: string): Promise<string> {
+    return this.translation.get(key).toPromise();
   }
 
   public addPhotoToGallery(): void {
@@ -37,18 +48,18 @@ export class CameraPage implements OnInit {
       header: 'Opciones de Foto',
       buttons: [
         {
-          text: 'Compartir evidencia',
+          text: await this.getTranslation('camera.shareText'),
           icon: 'share-social',
           handler: () => this.sendSharePhotoAction(photo)
         },
         {
-          text: 'Eliminar evidencia',
+          text: await this.getTranslation('camera.deleteText'),
           role: 'destructive',
           icon: 'trash',
           handler: () => this.photoService.deletePicture(photo, position)
         },
         {
-          text: 'Cancelar',
+          text: await this.getTranslation('camera.cancelText'),
           icon: 'close',
           role: 'cancel'
         }
