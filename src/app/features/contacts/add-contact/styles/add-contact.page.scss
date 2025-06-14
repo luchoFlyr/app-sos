@@ -2,12 +2,15 @@
 
 .ion-padding {
     --background: var(--ion-color-background);
+    padding-bottom: 72px; // Extra space for tab bar
 }
 
 ion-content {
     --background: var(--ion-color-background);
+    --padding-bottom: 72px; // Account for tab bar + safe area
 }
 
+// Keep all your existing styles for form elements
 ion-item {
     --background: transparent;
     --border-color: transparent;
@@ -57,6 +60,7 @@ ion-item {
     }
 }
 
+// Keep all your existing form styling...
 ion-label {
     color: var(--ion-color-medium-text) !important;
     font-size: 16px;
@@ -104,7 +108,11 @@ ion-toggle {
     }
 }
 
+// Fixed button row positioning
 ion-row {
+    margin-top: 32px;
+    margin-bottom: 20px; // Ensure buttons don't touch tab bar
+
     ion-col {
         padding: 0 8px;
 
@@ -140,15 +148,12 @@ ion-button {
     }
 }
 
-app-header {
-    ion-toolbar {
-        --background: var(--ion-color-primary);
-        --color: var(--ion-color-primary-contrast);
-    }
-}
-
 .ion-padding {
     padding-top: 24px;
+}
+
+.ion-padding-top {
+    margin-bottom: 70px;
 }
 
 ion-item:has(ion-toggle) {
