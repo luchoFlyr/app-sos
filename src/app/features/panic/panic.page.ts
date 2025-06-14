@@ -15,8 +15,7 @@ import { TranslationService } from '../../core/services/translation.service';
   selector: 'app-panic',
   templateUrl: './template/panic.page.html',
   styleUrls: ['./styles/panic.page.scss'],
-
-  standalone: false, 
+  standalone: false,
 })
 export class PanicPage implements OnInit, OnDestroy {
 

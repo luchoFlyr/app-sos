@@ -1,5 +1,7 @@
+@import '../../../../theme/variables.scss';
+
 .contacts-content {
-    --background: #1a1a1a;
+    --background: var(--ion-color-background);
 
     .contacts-container {
         padding: 16px;
@@ -16,12 +18,11 @@
             height: 48px;
             font-size: 16px;
             font-weight: 600;
-            --background: #34c759;
-            --background-activated: #28a745;
-            --background-hover: #30b955;
+            --background: var(--ion-color-light-blue);
+            --background-activated: var(--ion-color-light-blue-contrast);
+            --background-hover: var(--ion-color-primary);
             color: white;
             border-radius: 12px;
-            --box-shadow: 0 4px 10px rgba(52, 199, 89, 0.3);
 
             ion-icon {
                 font-size: 20px;
@@ -33,9 +34,11 @@
             height: 48px;
             font-size: 16px;
             font-weight: 500;
-            --color: #8e8e8e;
-            --border-color: #3a3a3a;
-            --background: transparent;
+            --color: white;
+            --background: var(--ion-color-light-blue);
+            --background-activated: var(--ion-color-light-blue-contrast);
+            --background-hover: var(--ion-color-primary);
+            --border-color: var(--ion-color-light-blue-contrast);
             border-radius: 12px;
 
             ion-icon {
@@ -52,7 +55,7 @@
 
     .contacts-list-container {
         flex: 1;
-        background: rgba(42, 42, 42, 0.5);
+        background: rgba(237 237 237 / 50%);
         border-radius: 16px;
         padding: 20px;
         overflow: hidden;
@@ -64,7 +67,7 @@
             margin-bottom: 20px;
 
             h3 {
-                color: white;
+                color: var(--ion-color-medium-text);
                 font-size: 18px;
                 font-weight: 600;
                 margin: 0;
@@ -151,7 +154,7 @@
                 flex: 1;
 
                 h4 {
-                    color: white;
+                    color: var(--ion-color-medium-text);
                     font-size: 16px;
                     font-weight: 600;
                     margin: 0 0 4px 0;
@@ -191,26 +194,12 @@
 
             .call-btn {
                 --color: #34c759;
-
-                &:hover {
-                    --background: rgba(52, 199, 89, 0.1);
-                }
+                --background: rgb(0, 255, 64);
             }
 
-            .edit-btn {
+            .open-btn {
                 --color: #007aff;
-
-                &:hover {
-                    --background: rgba(0, 122, 255, 0.1);
-                }
-            }
-
-            .delete-btn {
-                --color: #ff3b30;
-
-                &:hover {
-                    --background: rgba(255, 59, 48, 0.1);
-                }
+                --background: rgb(0, 123, 255);
             }
         }
     }
@@ -236,15 +225,13 @@ ion-header ion-toolbar {
 .contacts-list-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    padding-bottom: 16px;
 }
+
 
 .contacts-list {
     overflow-y: auto;
     flex-grow: 1;
-    max-height: 100%;
-    padding-right: 4px;
+    padding: 0 4px 100px;
 
     .contact-card {
         margin-bottom: 12px;

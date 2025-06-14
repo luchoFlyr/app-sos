@@ -7,11 +7,13 @@ import { PanicPageRoutingModule } from './panic-routing.module';
 
 import { SharedModule } from '../../shared/shared.module';
 import { SMS } from '@awesome-cordova-plugins/sms/ngx';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
+    TranslateModule,
     FormsModule,
     PanicPageRoutingModule,
     SharedModule

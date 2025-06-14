@@ -1,32 +1,20 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>PanicNow</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'panic.title' | translate" icon="people-outline"></app-header>
 
 <ion-content class="panic-content">
 
   <div class="panic-text">
-    <p>¡Presione el botón a continuación<br>y la ayuda le llegará pronto!</p>
+    <p>{{ 'panic.instructionText' | translate }}</p>
   </div>
 
   <div class="panic-button-container">
-    <ion-button shape="round" class="panic-button" routerLink="/menu/panic">
-      <ion-icon name="alert-circle" slot="icon-only" class="big-icon"></ion-icon> 
+    <ion-button shape="round" class="panic-button" (click)="togglePanic()">
+      <ion-icon name="alert-circle" slot="icon-only" class="big-icon"></ion-icon>
     </ion-button>
   </div>
 
-  <ion-button class="button-comp" expand="block">
+  <ion-button class="button-comp" expand="block" (click)="shareLocation()">
     <ion-icon name="location-outline" slot="start"></ion-icon>
-    Compartir Ubicación
+    {{ 'panic.shareLocationHeader' | translate }}
   </ion-button>
 
 </ion-content>
-
-

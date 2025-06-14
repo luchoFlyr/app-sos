@@ -16,6 +16,7 @@ export class AddContactPage implements OnInit {
     phone: '',
     message: '',
     allowCall: true,
+    allowSms: true,
     allowLocation: false,
     allowPhoto: false,
     type: 'Emergencia'

@@ -1,6 +1,6 @@
 {
   "camera": {
-    "title": "Toma evidencias relacionadas",
+    "title": "Toma evidencias",
     "emptyTitle": "¡Aún no tienes evidencias tomadas!",
     "emptySubtitle": "Cuándo tengas evidencias relacionadas, aquí te las mostraremos",
     "shareText": "Compartir evidencia de peligro",
@@ -29,12 +29,16 @@
     "message.placeholder": "Mensaje de emergencia...",
     "allow": {
       "call": "Permitir llamada",
+      "sms": "Permitir SMS",
       "location": "Permitir ubicación",
       "photo": "Permitir enviar foto"
     },
-    "addButton": "Agregar un nuevo Contacto",
-    "importButton": "Importar contacto desde contactos",
-    "header": "Contactos Agreados",
+    "title": "Contactos de Emergencia",
+    "emptyTitle": "¡Aún no tienes contactos de emergencia!",
+    "emptySubtitle": "Cuando tengas contactos de emergencia, aquí te los mostraremos",
+    "addButton": "Añadir contacto de emergencia",
+    "importButton": "Importar contacto de emergencia",
+    "header": "Contactos agreados",
     "countLabel": "Contactos",
     "addContactTitle": "Nuevo Contacto de Emergencia",
     "editContactTitle": "Editar Contacto",
@@ -76,7 +80,7 @@
     "smsLocationToast": "Ubicación compartida con sus contactos de emergencia."
   },
   "sms": {
-    "errors":{
+    "errors": {
       "sendSilentSms": "No se pudo enviar el SMS de alerta silenciosa. Error: ",
       "sendAPIsms": "No se pudo enviar el SMS mediante la API. Error: "
     },
@@ -86,8 +90,8 @@
     "iconLabel": "Atrás"
   },
   "general": {
-    "cancel": "Cancelar",
     "save": "Guardar",
+    "cancel": "Cancelar",
     "delete": "Eliminar",
     "ok": "OK"
   }
