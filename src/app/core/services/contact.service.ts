@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ContactPicker } from '@calvinckho/capacitor-contact-picker';
 import { Platform } from '@ionic/angular';
-import { Router } from '@angular/router';
 
 import { PlatformsEnum } from '../enums/platforms.enum';
-import { ExtendedContact } from '../models/ExtendedContact';
 import { ContactForm } from '../models/ContactForm.model';
+import { ExtendedContact } from '../models/ExtendedContact';
 import { TranslationService } from './translation.service';
 
-const STORAGE_KEY = 'emergency_contacts';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
+  private STORAGE_KEY: string = '';
   private contacts: ContactForm[] = [];
 
   constructor(
@@ -21,6 +21,8 @@ export class ContactService {
     private router: Router,
     private translation: TranslationService
   ) {
+    this.STORAGE_KEY = 'emergency_contacts';
+    
     this.loadFromStorage();
   }
 
@@ -28,23 +30,23 @@ export class ContactService {
     return [...this.contacts];
   }
 
-  public get(index: number): ContactForm | null {
+  public getContactFromIndex(index: number): ContactForm | null {
     return this.contacts[index] ?? null;
   }
 
-  public add(contact: ContactForm): void {
+  public addContactData(contact: ContactForm): void {
     this.contacts.push(contact);
     this.saveToStorage();
   }
 
-  public update(index: number, updated: ContactForm): void {
+  public updateContactData(index: number, updated: ContactForm): void {
     if (this.contacts[index]) {
       this.contacts[index] = updated;
       this.saveToStorage();
     }
   }
 
-  public delete(index: number): void {
+  public deleteContact(index: number): void {
     if (this.contacts[index]) {
       this.contacts.splice(index, 1);
       this.saveToStorage();
@@ -77,9 +79,9 @@ export class ContactService {
       return;
     }
 
-    const ext = result as ExtendedContact;
-    const name = ext.displayName || ext.fullName;
-    const phone = ext.phoneNumbers?.[0]?.phoneNumber ?? '';
+    const extCont = result as ExtendedContact;
+    const name = extCont.displayName || extCont.fullName;
+    const phone = extCont.phoneNumbers?.[0]?.phoneNumber ?? '';
 
     if (!name || !phone) {
       throw new Error(
@@ -97,11 +99,11 @@ export class ContactService {
   }
 
   private saveToStorage(): void {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.contacts));
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.contacts));
   }
 
   private loadFromStorage(): void {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = localStorage.getItem(this.STORAGE_KEY);
     if (stored) {
       try {
         this.contacts = JSON.parse(stored);

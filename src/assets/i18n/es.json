@@ -1,6 +1,6 @@
 {
   "camera": {
-    "title": "Toma evidencias relacionadas",
+    "title": "Toma evidencias",
     "emptyTitle": "¡Aún no tienes evidencias tomadas!",
     "emptySubtitle": "Cuándo tengas evidencias relacionadas, aquí te las mostraremos",
     "shareText": "Compartir evidencia de peligro",
@@ -29,12 +29,16 @@
     "message.placeholder": "Mensaje de emergencia...",
     "allow": {
       "call": "Permitir llamada",
+      "sms": "Permitir SMS",
       "location": "Permitir ubicación",
       "photo": "Permitir enviar foto"
     },
-    "addButton": "Agregar un nuevo Contacto",
-    "importButton": "Importar contacto desde contactos",
-    "header": "Contactos Agreados",
+    "title": "Contactos de Emergencia",
+    "emptyTitle": "¡Aún no tienes contactos de emergencia!",
+    "emptySubtitle": "Cuando tengas contactos de emergencia, aquí te los mostraremos",
+    "addButton": "Añadir contacto de emergencia",
+    "importButton": "Importar contacto de emergencia",
+    "header": "Contactos agreados",
     "countLabel": "Contactos",
     "addContactTitle": "Nuevo Contacto de Emergencia",
     "editContactTitle": "Editar Contacto",
@@ -54,7 +58,7 @@
   "panic": {
     "title": "Botón de Pánico",
     "instructionText": "Presione el botón a continuación y la ayuda le llegará pronto.",
-    "toastActivated": "Alerta de pánico activada. Enviando señal de emergencia...",
+    "toastActivated": "Alerta de pánico activada. Enviando señal de emergencia....",
     "alertDeactivatedHeader": "Alerta Desactivada",
     "alertDeactivatedMessage": "La alerta de pánico ha sido desactivada después de {{seconds}} segundos. ¿Está todo bien?",
     "alertDeactivatedWrongBtn": "No, fue un error",
@@ -68,26 +72,49 @@
     "smsEmergencyMessage": "¡Estoy en peligro! Necesito ayuda inmediatamente.",
     "smsSentToast": "Alerta enviada a {{count}} contactos de emergencia.",
     "smsFailToast": "No se pudo enviar la alerta por SMS.",
-    "smsCancelMessage": "Falsa alarma. La alerta de pánico ha sido cancelada.",
+    "smsCancelMessage": "¡Lo siento! Ha sido una falsa alarma, estoy a salvo. Luego te llamo.",
     "smsCancelToast": "Aviso de falsa alarma enviado a sus contactos.",
-    "smsSafeMessage": "Confirmación: Estoy a salvo.",
+    "smsSafeMessage": "¡Estoy a salvo! La ayuda a llegado, y ahora estoy fuera de peligro.",
     "smsSafeToast": "Confirmación de seguridad enviada a sus contactos.",
-    "smsLocationMessage": "Esta es mi ubicación actual: {{link}}",
+    "smsLocationMessage": "Esta es mi ubicación actual: \n{{link}}",
     "smsLocationToast": "Ubicación compartida con sus contactos de emergencia."
   },
+  "share": {
+    "title": "Compartir evidencia",
+    "subtitle": "Elige cómo quieres compartir la evidencia",
+    "shareText": "Compartir evidencia de peligro",
+    "shareError": "No se pudo compartir la evidencia. Error: {{error}}",
+    "shareSuccess": "Evidencia compartida exitosamente.",
+    "shareMessage": "Estoy en peligro y necesito ayuda. Mira está evidencia."
+  },
+  "geocoding": {
+    "errors": {
+      "network": "No se pudo obtener la ubicación. Error de red o de petición.",
+      "geocodeError": "No se pudo obtener la dirección. Error: ",
+      "reverseGeocodeError": "No se pudo obtener la ubicación reversa desde GeoCoding."
+    }
+  },
+  "location": {
+    "errors": {
+      "accuracy": "La precisión de la ubicación es demasiado baja. Por favor, active el GPS y asegúrese de que la ubicación esté habilitada."
+    }
+  },
+  "photos": {
+    "savingPhoto": "Guardando evidencia, no tomará mucho tiempo..."
+  },
   "sms": {
-    "errors":{
+    "errors": {
       "sendSilentSms": "No se pudo enviar el SMS de alerta silenciosa. Error: ",
       "sendAPIsms": "No se pudo enviar el SMS mediante la API. Error: "
     },
-    "platformNotSupported": "La plataforma no admite el envío de SMS."
+    "platformNotSupported": "El dispositivo actual no permite el envío de mensaje de texto de manera aútomatica, lo sentimos."
   },
   "header": {
     "iconLabel": "Atrás"
   },
   "general": {
-    "cancel": "Cancelar",
     "save": "Guardar",
+    "cancel": "Cancelar",
     "delete": "Eliminar",
     "ok": "OK"
   }

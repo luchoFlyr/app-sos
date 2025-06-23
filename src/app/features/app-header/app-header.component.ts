@@ -11,9 +11,13 @@ export class AppHeaderComponent implements OnInit {
 
   @Input() title: string = 'Emergencias';
   @Input() icon: string = 'alert-circle-outline';
-  @Input() color: string = 'danger';
+  @Input() color: string = "$ion-color-primary";
   constructor() { }
 
   ngOnInit() { }
 
+
+  
+
 }
+

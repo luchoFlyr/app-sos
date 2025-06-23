@@ -16,6 +16,7 @@ export class AddContactPage implements OnInit {
     phone: '',
     message: '',
     allowCall: true,
+    allowSms: true,
     allowLocation: false,
     allowPhoto: false,
     type: 'Emergencia'
@@ -34,7 +35,7 @@ export class AddContactPage implements OnInit {
       const indexParam = params['index'];
       if (indexParam !== undefined && !isNaN(indexParam)) {
         this.editingIndex = parseInt(indexParam, 10);
-        const existing = this.contactService.get(this.editingIndex);
+        const existing = this.contactService.getContactFromIndex(this.editingIndex);
         if (existing) {
           this.form = { ...existing };
         }
@@ -49,9 +50,9 @@ export class AddContactPage implements OnInit {
 
   public saveContact(): void {
     if (this.editingIndex !== null) {
-      this.contactService.update(this.editingIndex, this.form);
+      this.contactService.updateContactData(this.editingIndex, this.form);
     } else {
-      this.contactService.add(this.form);
+      this.contactService.addContactData(this.form);
     }
 
     this.router.navigate(['../'], { relativeTo: this.route });

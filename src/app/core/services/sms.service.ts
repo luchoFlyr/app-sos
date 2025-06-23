@@ -6,7 +6,6 @@ import { firstValueFrom } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { PlatformsEnum } from "../enums/platforms.enum";
-import { TextBeltResponse } from '../models/TextBellResponse.model';
 import { ToastService } from './toast.service';
 import { TranslationService } from './translation.service';
 
@@ -15,13 +14,13 @@ import { TranslationService } from './translation.service';
 })
 
 export class SmsService {
-  private readonly TEXT_BELT_URL = '';
-  private readonly TEXT_BELT_API_KEY = '';
+  private readonly SMS_API_URL = environment.smsUrlAPI;
+  private readonly SMS_API_KEY = environment.smsKeyAPI;
 
   constructor(
+    private http: HttpClient,
     private platform: Platform,
     private sms: SMS,
-    private http: HttpClient,
     private toastService: ToastService,
     private translationService: TranslationService,
 
@@ -29,11 +28,10 @@ export class SmsService {
 
   public async sendSmsSilentLocal(phoneNumbers: string[], message: string): Promise<boolean> {
     if (!this.platform.is(PlatformsEnum.ANDROID)) {
-      await this.toastService.showToastAsync(this.translationService.instant('sms.platformNoSupported'), 'warning');
-      return false;
+      await this.toastService.showToastAsync(this.translationService.instant('sms.platformNotSupported'), 'warning');
     }
 
-    const numbersCsv = phoneNumbers.join(',');
+    const filteredNumbers = phoneNumbers.join(',');
 
     try {
       const options: CordovaSmsOptions = {
@@ -42,7 +40,7 @@ export class SmsService {
           intent: ''
         }
       };
-      await this.sms.send(numbersCsv, message, options);
+      await this.sms.send(filteredNumbers, message, options);
       return true;
     } catch (err: any) {
       await this.toastService.showToastAsync(this.translationService.instant('sms.errors.sendSilentSms') + (err.message || err), 'danger');
@@ -50,21 +48,21 @@ export class SmsService {
     }
   }
 
-  public async sendSmsViaTextBelt(phoneNumber: string, message: string,): Promise<boolean> {
+  public async sendSmsViaAPI(phoneNumbers: string | string[], message: string,): Promise<boolean> {
     try {
       const payload = {
-        phone: phoneNumber,
+        phone: phoneNumbers,
         message,
-        key: this.TEXT_BELT_API_KEY
+        key: this.SMS_API_KEY
       };
-      const response = await firstValueFrom<TextBeltResponse>(
-        this.http.post<TextBeltResponse>(this.TEXT_BELT_URL, payload)
+      const response = await firstValueFrom<any>(
+        this.http.post<any>(this.SMS_API_URL, payload)
       );
 
       if (response.success) {
         return true;
       } else {
-        await this.toastService.showToastAsync(this.translationService.instant('sms.errors.sendAPIsms') + (response.error || 'Unkown'), 'danger');
+        await this.toastService.showToastAsync(this.translationService.instant('sms.errors.sendAPIsms') + (response.error || 'Unknown'), 'danger');
         return false;
       }
     } catch (err: any) {

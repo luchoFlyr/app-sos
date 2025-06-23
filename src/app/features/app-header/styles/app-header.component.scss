@@ -1,4 +1,22 @@
+@use '../../../../theme/variables.scss' as vars;
+
+ion-toolbar {
+  --background: var(--ion-color-primary);
+}
+
+ion-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
 .header-icon {
   margin-right: 8px;
-  font-size: 1.2em;
+  color: #{vars.$ion-color-primary};
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
+
+.custom-header {
+  --background: #{vars.$ion-color-primary};
 }

@@ -1,26 +1,20 @@
-<app-header title="Botón de pánico" icon="people-outline"></app-header>
+<app-header [title]="'panic.title' | translate" icon="people-outline"></app-header>
 
-<ion-content class="panic-content" [fullscreen]="true">
-  <div class="panic-container">
-    <div class="instruction-text">
-      <p>Presione el botón a continuación y la ayuda le llegará pronto.</p>
-    </div>
+<ion-content class="panic-content">
 
-    <div class="panic-button-container">
-      <div class="panic-button-outer" [class.active]="panicActive">
-        <div class="panic-button-middle" [class.active]="panicActive">
-          <button class="panic-button" [class.active]="panicActive" (click)="togglePanic()">
-            <ion-icon name="alert"></ion-icon>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="action-buttons">
-      <ion-button expand="block" class="location-button" (click)="shareLocation()">
-        <ion-icon name="location-outline" slot="start"></ion-icon>
-        Compartir Ubicación
-      </ion-button>
-    </div>
+  <div class="panic-text">
+    <p>{{ 'panic.instructionText' | translate }}</p>
   </div>
+
+  <div class="panic-button-container">
+    <ion-button shape="round" class="panic-button" (click)="togglePanic()">
+      <ion-icon name="alert-circle" slot="icon-only" class="big-icon"></ion-icon>
+    </ion-button>
+  </div>
+
+  <ion-button class="button-comp" expand="block" (click)="shareLocation()">
+    <ion-icon name="location-outline" slot="start"></ion-icon>
+    {{ 'panic.shareLocationHeader' | translate }}
+  </ion-button>
+
 </ion-content>
