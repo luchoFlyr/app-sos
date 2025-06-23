@@ -1,6 +1,5 @@
 ion-tab-bar {
   --background: var(--ion-color-primary);
-
   --border: none;
 }
 
@@ -14,7 +13,6 @@ ion-tab-button.tab-selected {
   transition: background 0.3s ease;
   transform: scale(1.1);
 }
-
 
 .custom-tabs {
   height: 65px;

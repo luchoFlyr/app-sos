@@ -1,8 +1,11 @@
 export const environment = {
   production: true,
 
-  // geoLocate_Key: process.env["GEOLOCATE_API_KEY"] || '',
-  // smsApi_url: process.env["SMS_API_URL"] || '',
-  // textBelt_Url: process.env["TEXTBELT_URL"] || '',
-  // textBelt_Api_Key: process.env["TEXTBELT_API_KEY"] || '',
+
+  geoCodingUrl: 'https://maps.googleapis.com',
+  geoCodingKey: 'AIzaSyC7TBvOu7U6_qgCnvQvhCRvpIReL5QDTVw',
+  geoCodingSuffix: 'maps/api/geocode/json',
+
+  smsUrlAPI: '',
+  smsKeyAPI: '',
 };

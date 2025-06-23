@@ -1,66 +1,67 @@
-@import '../../../../../theme/variables.scss';
-
-.ion-padding {
+ion-content.add-contact-content {
     --background: var(--ion-color-background);
-    padding-bottom: 72px; // Extra space for tab bar
+    --padding-bottom: 72px;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px 72px;
 }
 
-ion-content {
-    --background: var(--ion-color-background);
-    --padding-bottom: 72px; // Account for tab bar + safe area
-}
-
-// Keep all your existing styles for form elements
 ion-item {
     --background: transparent;
-    --border-color: transparent;
+    --border: none;
     --inner-border-width: 0;
-    --border-width: 0;
     margin-bottom: 20px;
 
-    &:has(ion-input) {
-        position: relative;
+    position: relative;
 
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-color: #ccc;
-            transition: background-color 0.3s ease;
-        }
-
-        &.item-has-focus::after {
-            background-color: var(--ion-color-primary);
-            height: 2px;
-        }
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #ccc;
+        transition: background-color 0.3s ease;
     }
 
-    &:has(ion-textarea) {
-        background-color: #f0f0f0;
-        border-radius: 8px;
-        padding: 12px;
-        margin-bottom: 24px;
-
-        &::after {
-            display: none;
-        }
-    }
-
-    &:has(ion-toggle) {
-        --background: transparent;
-        padding: 12px 0;
-        margin-bottom: 8px;
-
-        &::after {
-            display: none;
-        }
+    &.item-has-focus::after {
+        background-color: var(--ion-color-primary);
+        height: 2px;
     }
 }
 
-// Keep all your existing form styling...
+ion-item:has(ion-textarea) {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 24px;
+
+    &::after {
+        display: none;
+    }
+}
+
+ion-item:has(ion-toggle) {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    margin: 24px 0 8px;
+
+    &::after {
+        display: none;
+    }
+
+    ion-label {
+        flex: 1;
+        margin: 0;
+    }
+
+    ion-toggle {
+        margin-left: auto;
+    }
+}
+
 ion-label {
     color: var(--ion-color-medium-text) !important;
     font-size: 16px;
@@ -73,7 +74,8 @@ ion-label {
     }
 }
 
-ion-input {
+ion-input,
+ion-textarea {
     --color: var(--ion-color-medium-text);
     --placeholder-color: #999;
     font-size: 16px;
@@ -84,13 +86,6 @@ ion-input {
 }
 
 ion-textarea {
-    --color: var(--ion-color-medium-text);
-    --placeholder-color: #999;
-    font-size: 16px;
-    --padding-start: 0;
-    --padding-end: 0;
-    --padding-top: 0;
-    --padding-bottom: 0;
     min-height: 80px;
 }
 
@@ -101,32 +96,20 @@ ion-toggle {
     --handle-background-checked: #ffffff;
     width: 44px;
     height: 24px;
-
-    &::part(handle) {
-        width: 20px;
-        height: 20px;
-    }
 }
 
-// Fixed button row positioning
 ion-row {
-    margin-top: 32px;
-    margin-bottom: 20px; // Ensure buttons don't touch tab bar
+    display: flex;
+    justify-content: space-between;
+    margin: 32px 0 20px;
 
     ion-col {
         padding: 0 8px;
-
-        &:first-child {
-            padding-left: 0;
-        }
-
-        &:last-child {
-            padding-right: 0;
-        }
     }
 }
 
 ion-button {
+    flex: 1;
     height: 44px;
     font-size: 16px;
     font-weight: 600;
@@ -145,34 +128,5 @@ ion-button {
         --background-activated: #d0d0d0;
         --background-hover: #d0d0d0;
         --color: #666;
-    }
-}
-
-.ion-padding {
-    padding-top: 24px;
-}
-
-.ion-padding-top {
-    margin-bottom: 70px;
-}
-
-ion-item:has(ion-toggle) {
-    &:first-of-type {
-        margin-top: 24px;
-    }
-}
-
-ion-item:has(ion-toggle) {
-    display: flex;
-    align-items: center;
-    min-height: 48px;
-
-    ion-label {
-        flex: 1;
-        margin: 0;
-    }
-
-    ion-toggle {
-        margin-left: auto;
     }
 }

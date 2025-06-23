@@ -1,14 +1,19 @@
+$ion-color-primary: #42A5F5 !default;
+$ion-color-primary-contrast: #ffffff !default;
+$ion-color-danger: #db4745 !default;
+$ion-color-danger-contrast: #ffffff !default;
+$ion-color-light-blue: #90CAF9 !default;
+$ion-color-light-blue-contrast: #ffffff !default;
+$ion-color-medium-text: #000000 !default;
+$ion-color-background: #ffffff !default;
+
 :root {
-    --ion-color-primary: #42A5F5;
-    --ion-color-primary-contrast: #ffffff;
-
-    --ion-color-danger: #db4745;
-    --ion-color-danger-contrast: #ffffff;
-
-    --ion-color-light-blue: #90CAF9;
-    --ion-color-light-blue-contrast: #ffffff;
-
-    --ion-color-medium-text: #000000;
-
-    --ion-color-background: #ffffff;
+    --ion-color-primary: #{$ion-color-primary};
+    --ion-color-primary-contrast: #{$ion-color-primary-contrast};
+    --ion-color-danger: #{$ion-color-danger};
+    --ion-color-danger-contrast: #{$ion-color-danger-contrast};
+    --ion-color-light-blue: #{$ion-color-light-blue};
+    --ion-color-light-blue-contrast:#{$ion-color-light-blue-contrast};
+    --ion-color-medium-text: #{$ion-color-medium-text};
+    --ion-color-background: #{$ion-color-background};
 }

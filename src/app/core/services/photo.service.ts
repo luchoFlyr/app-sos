@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Preferences } from '@capacitor/preferences';
 import { Capacitor } from '@capacitor/core';
-import { UserPhoto } from '../models/UserPhoto.Model';
+import { Directory, Filesystem } from '@capacitor/filesystem';
+import { Preferences } from '@capacitor/preferences';
 import { LoadingController, Platform } from '@ionic/angular';
+
 import { PlatformsEnum } from '../enums/platforms.enum';
+import { UserPhoto } from '../models/UserPhoto.Model';
+import { TranslationService } from './translation.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class PhotoService {
 
   constructor(
     private platform: Platform,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private translationService: TranslationService
   ) { }
 
   public async addNewToGallery(): Promise<void> {
@@ -66,8 +69,8 @@ export class PhotoService {
 
   private async savePicture(photo: Photo): Promise<UserPhoto> {
     const loading = await this.loadingCtrl.create({
-      message: '¡Guardando tu evidencia! No tardamos',
-      spinner: 'crescent',
+      message: this.translationService.instant('photos.savingPhoto'),
+      spinner: 'dots',
       backdropDismiss: false
     });
 
@@ -87,16 +90,6 @@ export class PhotoService {
 
       fileUri = savedFile.uri;
     } else {
-      const response = await fetch(photo.webPath!);
-      const blob = await response.blob();
-      const base64Data = await this.convertBlobToBase64(blob) as string;
-
-      const savedFile = await Filesystem.writeFile({
-        path: fileName,
-        data: base64Data,
-        directory: Directory.Data
-      });
-
       fileUri = `${Directory.Data}/${fileName}`;
     }
 
@@ -111,14 +104,5 @@ export class PhotoService {
 
   private getFilename(filepath: string): string | null {
     return filepath ? filepath.substring(filepath.lastIndexOf('/') + 1) : null;
-  }
-
-  private convertBlobToBase64(blob: Blob): Promise<string | ArrayBuffer | null> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onerror = () => reject(new Error('Error al convertir imagen a base64'));
-      reader.onload = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
   }
 }

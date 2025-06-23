@@ -1,66 +1,61 @@
-@import '../../../../theme/variables.scss';
-
-.contacts-content {
+ion-content.contacts-content {
     --background: var(--ion-color-background);
     --padding-bottom: 72px;
+    display: flex;
+    flex-direction: column;
 }
 
 .contacts-container {
     padding: 16px;
-    height: calc(100vh - 112px);
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 112px);
+    flex: 1;
+    min-height: 0;
 }
 
 .action-buttons {
     margin-bottom: 24px;
-    flex-shrink: 0; // Prevent shrinking
+    flex-shrink: 0;
 
-    .add-contact-btn {
-        margin-bottom: 12px;
-        height: 48px;
-        font-size: 16px;
-        font-weight: 600;
-        --background: var(--ion-color-light-blue);
-        --background-activated: var(--ion-color-primary);
-        --background-hover: var(--ion-color-primary);
-        color: white;
-        border-radius: 12px;
-
-        ion-icon {
-            font-size: 20px;
-            margin-right: 8px;
-        }
-    }
-
+    .add-contact-btn,
     .import-contacts-btn {
         height: 48px;
         font-size: 16px;
-        font-weight: 500;
-        --color: white;
+        font-weight: 600;
+        color: white;
+        border-radius: 12px;
+        margin-bottom: 12px;
+
+        ion-icon {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+    }
+
+    .add-contact-btn {
+        --background: var(--ion-color-light-blue);
+        --background-activated: var(--ion-color-primary);
+        --background-hover: var(--ion-color-primary);
+    }
+
+    .import-contacts-btn {
         --background: var(--ion-color-light-blue);
         --background-activated: var(--ion-color-primary);
         --background-hover: var(--ion-color-primary);
         --border-color: var(--ion-color-light-blue);
-        border-radius: 12px;
-
-        ion-icon {
-            font-size: 18px;
-            margin-right: 8px;
-        }
+        font-weight: 500;
     }
 }
 
 .contacts-list-container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
     background: rgba(237, 237, 237, 0.5);
     border-radius: 16px;
     padding: 20px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    min-height: 0; // Allow flex shrinking
 
     .contacts-header {
         display: flex;
@@ -84,11 +79,11 @@
 }
 
 .empty-state {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex: 1;
     color: #8e8e8e;
     text-align: center;
     padding: 20px;
@@ -112,10 +107,11 @@
 }
 
 .contacts-list {
-    overflow-y: auto;
     flex: 1;
+    overflow-y: auto;
     padding-right: 4px;
     margin-right: -4px;
+    /* neutraliza el scroll padding */
 
     .contact-card {
         background: rgba(255, 255, 255, 0.8);
@@ -167,13 +163,13 @@
                 color: var(--ion-color-medium-text);
                 font-size: 16px;
                 font-weight: 600;
-                margin: 0 0 4px 0;
+                margin: 0 0 4px;
             }
 
             p {
                 color: #666;
                 font-size: 14px;
-                margin: 0 0 4px 0;
+                margin: 0 0 4px;
                 font-family: monospace;
             }
 
@@ -240,10 +236,6 @@ ion-header ion-toolbar {
 }
 
 @media (max-height: 600px) {
-    .contacts-container {
-        height: calc(100vh - 100px);
-    }
-
     .action-buttons {
         margin-bottom: 16px;
     }

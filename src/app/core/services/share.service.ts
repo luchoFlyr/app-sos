@@ -1,28 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Share } from '@capacitor/share';
 import { Capacitor } from '@capacitor/core';
-import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Directory, Filesystem } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
+
 import { UserPhoto } from '../models/UserPhoto.Model';
+import { ToastService } from './toast.service';
+import { TranslationService } from './translation.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ShareService {
+
+  constructor(
+    private translationService: TranslationService,
+    private toastService: ToastService
+  ) { }
   public async sharePhoto(photo: UserPhoto, testMessage?: string): Promise<void> {
     try {
       if (!Capacitor.isNativePlatform()) {
         await Share.share({
-          title: 'Foto de evidencia',
-          text: 'Estoy en peligro, mira esta foto.',
+          title: this.translationService.instant('share.title'),
+          text: this.translationService.instant('share.shareMessage'),
           url: photo.webviewPath,
-          dialogTitle: 'Compartir foto en...'
+          dialogTitle: this.translationService.instant('share.subtitle')
         });
       }
+
       const filePath = photo.path || photo.filepath;
       const file = await Filesystem.readFile({ path: filePath });
 
-      const sharedName = `shared-${Date.now()}.jpg`;
+      const sharedName = `evidence-${Date.now()}.jpg`;
       await Filesystem.writeFile({
         path: sharedName,
         data: file.data,
@@ -36,14 +45,14 @@ export class ShareService {
       });
 
       await Share.share({
-        title: 'Foto de evidencia',
-        text: testMessage ? testMessage : 'Estoy en peligro, mira esta foto.',
+        title: this.translationService.instant('share.title'),
+        text: testMessage ? testMessage : this.translationService.instant('share.shareMessage'),
         files: [uriResult.uri],
-        dialogTitle: 'Compartir foto en...'
+        dialogTitle: this.translationService.instant('share.subtitle')
       });
 
-    } catch (error) {
-      console.error('Error al compartir la foto', error);
+    } catch (err) {
+      await this.toastService.showToastAsync(this.translationService.instant('share.shareError', { error: err }), 'danger');
     }
   }
 }

@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Geolocation, PositionOptions, Position } from '@capacitor/geolocation';
+import { Geolocation, Position, PositionOptions } from '@capacitor/geolocation';
+
 import { Coordinates } from '../models/Coordinates.Mode';
+import { ToastService } from './toast.service';
+import { TranslationService } from './translation.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
+  constructor(
+    private toastService: ToastService,
+    private translationService: TranslationService
+  ) { }
   private positionOpts: PositionOptions = {
     enableHighAccuracy: true,
     timeout: 15000,
@@ -14,15 +21,13 @@ export class LocationService {
 
   public async getCurrentLocation(): Promise<Coordinates> {
     const status = await Geolocation.checkPermissions();
-    if (status.location !== 'granted') {
-      await Geolocation.requestPermissions();
-    }
+    if (status.location !== 'granted') await Geolocation.requestPermissions();
 
     const pos: Position = await Geolocation.getCurrentPosition(this.positionOpts);
     const { latitude, longitude, accuracy } = pos.coords;
 
     if (accuracy > 30) {
-      console.warn(`Precisión baja (${accuracy} m), tal vez reintentar.`);
+      await this.toastService.showToastAsync(this.translationService.instant('location.errors.accuracy'), 'danger');
     }
 
     return { latitude, longitude, accuracy };

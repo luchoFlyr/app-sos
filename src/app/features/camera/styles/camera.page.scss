@@ -1,8 +1,7 @@
-@import '../../../../theme/variables.scss';
-
-.camera-content {
+ion-content.camera-content {
     --background: var(--ion-color-background);
     --padding-bottom: 72px;
+
     display: flex;
     flex-direction: column;
     height: calc(100vh - 112px);
@@ -55,7 +54,7 @@ ion-grid {
     overflow: hidden;
     margin-bottom: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1;
     background-color: #f0f0f0;
 
     &:active {
@@ -142,7 +141,7 @@ ion-header ion-toolbar {
 }
 
 @media (max-height: 600px) {
-    .camera-content {
+    ion-content.camera-content {
         height: calc(100vh - 100px);
     }
 
@@ -161,7 +160,6 @@ ion-header ion-toolbar {
     }
 }
 
-// Handle safe areas for different devices
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
     .camera-footer {
         bottom: calc(56px + env(safe-area-inset-bottom));
