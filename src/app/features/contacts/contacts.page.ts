@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 
 import { ContactForm } from '../../core/models/ContactForm.model';
+import { AlertService } from '../../core/services/alert.service';
 import { ContactService } from '../../core/services/contact.service';
 import { TranslationService } from '../../core/services/translation.service';
-import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-contacts',

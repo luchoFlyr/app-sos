@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Geolocation, Position, PositionOptions } from '@capacitor/geolocation';
 
-import { Coordinates } from '../models/Coordinates.Mode';
+import { Coordinates } from '../models/Coordinates.model';
 import { ToastService } from './toast.service';
 import { TranslationService } from './translation.service';
 

@@ -145,7 +145,10 @@ export class PanicPage implements OnInit, OnDestroy {
       return;
     }
 
-    const message = this.translationService.instant('panic.smsEmergencyMessage');
+    const { latitude, longitude } = await this.locationService.getCurrentLocation();
+    const mapsLink = this.locationService.getSearchLink(latitude, longitude);
+
+    const message = this.translationService.instant('panic.smsEmergencyMessage', { link: mapsLink });
 
     const sentSMS = await this.smsService.sendSmsSilentLocal(phoneNumbers, message);
 

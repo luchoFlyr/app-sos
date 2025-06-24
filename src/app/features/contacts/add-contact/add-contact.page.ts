@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ContactForm } from 'src/app/core/models/ContactForm.model';
-import { ContactService } from 'src/app/core/services/contact.service';
+import { ContactForm } from '../../../core/models/ContactForm.model';
+import { ContactService } from '../../../core/services/contact.service';
 
 @Component({
   selector: 'app-add-contact',

@@ -69,7 +69,7 @@
     "locationErrorHeader": "Error",
     "locationErrorMessage": "No se pudo obtener su ubicación. Verifique permisos.",
     "noContactsToast": "No hay contactos de emergencia registrados.",
-    "smsEmergencyMessage": "¡Estoy en peligro! Necesito ayuda inmediatamente.",
+    "smsEmergencyMessage": "¡Estoy en peligro! Necesito ayuda inmediatamente. Esta es mi ubicación actual: \n{{link}}",
     "smsSentToast": "Alerta enviada a {{count}} contactos de emergencia.",
     "smsFailToast": "No se pudo enviar la alerta por SMS.",
     "smsCancelMessage": "¡Lo siento! Ha sido una falsa alarma, estoy a salvo. Luego te llamo.",
@@ -116,6 +116,8 @@
     "save": "Guardar",
     "cancel": "Cancelar",
     "delete": "Eliminar",
-    "ok": "OK"
+    "ok": "OK",
+    "apiErrorConnect": "Error al conectar con la API. Por favor, inténtelo de nuevo más tarde.",
+    "apiPlatformNotSupported": "La plataforma actual no es compatible con esta función."
   }
 }

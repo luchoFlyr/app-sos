@@ -1,13 +1,13 @@
 {
   "camera": {
-    "title": "Capture Related Evidence",
+    "title": "Take Evidence",
     "emptyTitle": "You haven't taken any evidence yet!",
-    "emptySubtitle": "When you have related evidence, we'll show them here",
+    "emptySubtitle": "When you have related evidence, we’ll show it here",
     "shareText": "Share danger evidence",
     "deleteText": "Delete evidence",
     "cancelText": "Cancel",
     "photoOptions": "Photo Options",
-    "takePhoto": "Capture new evidence"
+    "takePhoto": "Take new evidence"
   },
   "contacts": {
     "add": {
@@ -29,12 +29,16 @@
     "message.placeholder": "Emergency message...",
     "allow": {
       "call": "Allow call",
+      "sms": "Allow SMS",
       "location": "Allow location",
-      "photo": "Allow sending photo"
+      "photo": "Allow photo sending"
     },
-    "addButton": "Add a new Contact",
-    "importButton": "Import contact from contacts",
-    "header": "Added Contacts",
+    "title": "Emergency Contacts",
+    "emptyTitle": "You haven't added any emergency contacts yet!",
+    "emptySubtitle": "When you add emergency contacts, they’ll appear here",
+    "addButton": "Add emergency contact",
+    "importButton": "Import emergency contact",
+    "header": "Added contacts",
     "countLabel": "Contacts",
     "addContactTitle": "New Emergency Contact",
     "editContactTitle": "Edit Contact",
@@ -46,42 +50,74 @@
     "namePlaceholder": "Full name",
     "phonePlaceholder": "Phone number",
     "errors": {
-      "importUnavailable": "Import is only available on a physical device.",
-      "pluginUnavailable": "The contact import plugin is unavailable.",
-      "invalidContact": "Could not retrieve contact name or number."
+      "importUnavailable": "The contact import feature is only available on physical devices.",
+      "pluginUnavailable": "The contact import plugin is not available.",
+      "invalidContact": "Could not retrieve name or number from the contact."
     }
   },
   "panic": {
     "title": "Panic Button",
     "instructionText": "Press the button below and help will arrive soon.",
-    "toastActivated": "Panic alert activated. Sending emergency signal...",
+    "toastActivated": "Panic alert activated. Sending emergency signal....",
     "alertDeactivatedHeader": "Alert Deactivated",
-    "alertDeactivatedMessage": "Panic alert was deactivated after {{seconds}} seconds. Are you okay?",
-    "alertDeactivatedWrongBtn": "No, was a mistake",
-    "alertDeactivatedOkBtn": "Yes, I’m fine",
+    "alertDeactivatedMessage": "The panic alert was deactivated after {{seconds}} seconds. Is everything okay?",
+    "alertDeactivatedWrongBtn": "No, it was a mistake",
+    "alertDeactivatedOkBtn": "Yes, I'm fine",
     "shareLocationHeader": "Share Location",
     "shareLocationMessage": "Your current location: {{coords}}.\nApproximate address: {{address}}.\n\nDo you want to share this location with your emergency contacts?",
     "shareLocationBtn": "Share",
     "locationErrorHeader": "Error",
-    "locationErrorMessage": "Could not get your location. Check permissions.",
+    "locationErrorMessage": "Could not retrieve your location. Check permissions.",
     "noContactsToast": "No emergency contacts registered.",
-    "smsEmergencyMessage": "I’m in danger! I need help immediately.",
+    "smsEmergencyMessage": "I'm in danger! I need help immediately. This is my current location: \n{{link}}",
     "smsSentToast": "Alert sent to {{count}} emergency contacts.",
-    "smsFailToast": "Failed to send panic alert via SMS.",
-    "smsCancelMessage": "False alarm. Panic alert has been canceled.",
+    "smsFailToast": "The SMS alert could not be sent.",
+    "smsCancelMessage": "Sorry! It was a false alarm, I'm safe. I'll call you later.",
     "smsCancelToast": "False alarm notice sent to your contacts.",
-    "smsSafeMessage": "Confirmation: I am safe.",
+    "smsSafeMessage": "I’m safe! Help has arrived and I’m out of danger now.",
     "smsSafeToast": "Safety confirmation sent to your contacts.",
-    "smsLocationMessage": "Here is my current location: {{link}}",
+    "smsLocationMessage": "This is my current location: \n{{link}}",
     "smsLocationToast": "Location shared with your emergency contacts."
+  },
+  "share": {
+    "title": "Share Evidence",
+    "subtitle": "Choose how you want to share the evidence",
+    "shareText": "Share danger evidence",
+    "shareError": "Could not share the evidence. Error: {{error}}",
+    "shareSuccess": "Evidence shared successfully.",
+    "shareMessage": "I’m in danger and need help. Check this evidence."
+  },
+  "geocoding": {
+    "errors": {
+      "network": "Could not retrieve location. Network or request error.",
+      "geocodeError": "Could not get the address. Error: ",
+      "reverseGeocodeError": "Could not obtain reverse location from GeoCoding."
+    }
+  },
+  "location": {
+    "errors": {
+      "accuracy": "Location accuracy is too low. Please enable GPS and make sure location is enabled."
+    }
+  },
+  "photos": {
+    "savingPhoto": "Saving evidence, it won’t take long..."
+  },
+  "sms": {
+    "errors": {
+      "sendSilentSms": "Could not send silent alert SMS. Error: ",
+      "sendAPIsms": "Could not send SMS via API. Error: "
+    },
+    "platformNotSupported": "The current device does not support automatic text message sending, sorry."
   },
   "header": {
     "iconLabel": "Back"
   },
   "general": {
-    "cancel": "Cancel",
     "save": "Save",
+    "cancel": "Cancel",
     "delete": "Delete",
-    "ok": "OK"
+    "ok": "OK",
+    "apiErrorConnect": "Error connecting to the API. Please try again later.",
+    "apiPlatformNotSupported": "The current platform is not supported for this feature."
   }
 }

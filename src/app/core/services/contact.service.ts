@@ -5,7 +5,7 @@ import { Platform } from '@ionic/angular';
 
 import { PlatformsEnum } from '../enums/platforms.enum';
 import { ContactForm } from '../models/ContactForm.model';
-import { ExtendedContact } from '../models/ExtendedContact';
+import { ExtendedContact } from '../models/ExtendedContact.model';
 import { TranslationService } from './translation.service';
 
 

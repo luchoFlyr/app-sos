@@ -7,4 +7,6 @@ export const environment = {
 
   smsUrlAPI: '',
   smsKeyAPI: '',
+
+  panicNowApiUrl: 'https://spaniel-massive-inherently.ngrok-free.app/api/v1',
 };

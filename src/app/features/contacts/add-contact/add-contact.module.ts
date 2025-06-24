@@ -8,7 +8,7 @@ import { AddContactPageRoutingModule } from './add-contact-routing.module';
 
 import { AddContactPage } from './add-contact.page';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   imports: [
